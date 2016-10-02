@@ -1,0 +1,42 @@
+{
+  "name": "uniscope",
+  "version": "0.0.1",
+  "description": "Allows one to evaluate a code within a controlled environment",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "eslint . && mocha test/unit/_bootstrap.js test/unit/**/*.test.js"
+  },
+  "keywords": [
+    "eval",
+    "scope",
+    "postman"
+  ],
+  "author": "Postman Labs <help@getpostman.com> (=)",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "3.7.0",
+    "eslint-plugin-jsdoc": "2.3.1",
+    "eslint-plugin-mocha": "4.5.1",
+    "eslint-plugin-security": "1.2.0",
+    "expect.js": "0.3.1",
+    "mocha": "3.1.0"
+  },
+  "dependencies": {
+    "eslint-plugin-jsdoc": "^2.3.1",
+    "eslint-plugin-mocha": "^4.5.1",
+    "eslint": "^3.7.0",
+    "expect.js": "^0.3.1",
+    "eslint-plugin-security": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/postmanlabs/uniscope.git"
+  },
+  "bugs": {
+    "url": "https://github.com/postmanlabs/uniscope/issues"
+  },
+  "homepage": "https://github.com/postmanlabs/uniscope#readme"
+}
