@@ -21,5 +21,5 @@ test('-d', OUT_DIR) && rm('-rf', OUT_DIR);
 mkdir('-p', OUT_DIR);
 
 // execute command
-exec(`jsdoc2md --src lib/**/*.js > ${OUT_PATH};`);
+exec(`node node_modules/.bin/jsdoc2md lib/**/*.js > ${OUT_PATH};`);
 echo(` - wiki generated at ${OUT_PATH}\n`);

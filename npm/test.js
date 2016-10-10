@@ -7,10 +7,10 @@ var prettyms = require('pretty-ms'),
 
 require('async').series([
     require('./test-lint'),
-    require('./test-system'),
-    require('./test-unit'),
-    require('./test-integration'),
-    require('./test-cli')
+    // require('./test-system'),
+    require('./test-unit')
+    // require('./test-integration'),
+    // process.env.CI ? function (done) { done(); } : require('./test-browser')
 ], function (code) {
     console.info(`\nnewman: duration ${prettyms(Date.now() - startedAt)}\nnewman: ${code ? 'not ok' : 'ok'}!`[code ?
         'red' : 'green']);

@@ -7,7 +7,14 @@
     "test": "test"
   },
   "scripts": {
-    "test": "eslint . && mocha test/unit/_bootstrap.js test/unit/**/*.test.js"
+    "build-docs": "node npm/build-docs.js",
+    "build-wiki": "node npm/build-wiki.js",
+    "test-browser": "node npm/test-browser.js",
+    "test-integration": "node npm/test-integration.js",
+    "test-lint": "node npm/test-lint.js",
+    "test-system": "node npm/test-system.js",
+    "test-unit": "node npm/test-unit.js",
+    "test": "node npm/test.js"
   },
   "keywords": [
     "eval",
@@ -17,12 +24,23 @@
   "author": "Postman Labs <help@getpostman.com> (=)",
   "license": "Apache-2.0",
   "devDependencies": {
+    "async": "2.0.1",
+    "colors": "1.1.2",
     "eslint": "3.7.0",
     "eslint-plugin-jsdoc": "2.3.1",
     "eslint-plugin-mocha": "4.5.1",
     "eslint-plugin-security": "1.2.0",
     "expect.js": "0.3.1",
-    "mocha": "3.1.0"
+    "istanbul": "0.4.5",
+    "jsdoc": "3.4.2",
+    "jsdoc-to-markdown": "2.0.0",
+    "mocha": "3.1.0",
+    "nsp": "2.6.2",
+    "packity": "0.3.2",
+    "postman-jsdoc-theme": "0.0.2",
+    "pretty-ms": "2.1.0",
+    "recursive-readdir": "2.1.0",
+    "shelljs": "0.7.4"
   },
   "repository": {
     "type": "git",
