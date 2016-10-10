@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "test-browser": "node npm/test-browser.js",
     "test": "eslint . && mocha test/unit/_bootstrap.js test/unit/**/*.test.js"
   },
   "keywords": [
@@ -17,12 +18,21 @@
   "author": "Postman Labs <help@getpostman.com> (=)",
   "license": "Apache-2.0",
   "devDependencies": {
+    "browserify": "13.1.0",
+    "colors": "1.1.2",
     "eslint": "3.7.0",
     "eslint-plugin-jsdoc": "2.3.1",
     "eslint-plugin-mocha": "4.5.1",
     "eslint-plugin-security": "1.2.0",
     "expect.js": "0.3.1",
-    "mocha": "3.1.0"
+    "karma": "1.3.0",
+    "karma-browserify": "5.1.0",
+    "karma-chrome-launcher": "2.0.0",
+    "karma-mocha": "1.2.0",
+    "karma-mocha-reporter": "2.2.0",
+    "mocha": "3.1.0",
+    "shelljs": "0.7.4",
+    "watchify": "3.7.0"
   },
   "repository": {
     "type": "git",
