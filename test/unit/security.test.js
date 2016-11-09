@@ -1,7 +1,8 @@
 describe('scope module security', function () {
+    var Scope = require('../../');
+
     describe('sensitive globals', function () {
-        var Scope = require('../../'),
-            scope;
+        var scope;
 
         beforeEach(function () {
             scope = Scope.create();
@@ -23,6 +24,25 @@ describe('scope module security', function () {
             scope.exec(`
                 expect(typeof process).be('undefined');
                 expect(this.process).be(undefined);
+            `, done);
+        });
+    });
+
+    describe('execution function', function () {
+        var scope;
+
+        beforeEach(function () {
+            scope = Scope.create();
+            scope.set('expect', expect);
+        });
+
+        afterEach(function () {
+            scope = null;
+        });
+
+        it('must not provide access to `arguments` variable', function (done) {
+            scope.exec(`
+                expect(typeof arguments).be('undefined');
             `, done);
         });
     });
