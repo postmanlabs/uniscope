@@ -1,4 +1,4 @@
-describe('scope module globals', function () {
+describe('scope module import globals', function () {
     var Scope = require('../../'),
         scope;
 
