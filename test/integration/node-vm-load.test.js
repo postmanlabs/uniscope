@@ -4,10 +4,9 @@ describe('vm module', function () {
 
         execute; // function
 
-    beforeEach(function () {})
-
-    it('must be able to load and execute scope', function (done) {
+    beforeEach(function (done) {
         browserify({
+            insertGlobalVars: false,
             browserField: false,
             bare: true,
             builtins: false,
@@ -19,56 +18,65 @@ describe('vm module', function () {
 
             var sandbox = vm.createContext({
                 expect: expect,
-                done: done
+                console: console,
+                global: null,
+                ArrayOutsideVM: Array
             });
 
             vm.runInContext(code.toString(), sandbox);
 
-            vm.runInContext(`
-                var scope = require('scope').create(),
-                    checkrun = {};
-
-                // set a reference variable to check if scope has run
-                scope.set('_checkrun', checkrun);
-                scope.set('_expect', expect);
-
-                scope.exec([
-                    '_expect(_checkrun).not.have.property("go")',
-                    '_checkrun.go = true;'].join(';'),
-                function (err) {
-                    if (err) { return done(err); }
-                    expect(checkrun.go).be.ok();
-                    done();
-                });
-            `, sandbox);
+            execute = function (code, done) {
+                sandbox.done = done;
+                vm.runInContext(code, sandbox);
+            };
+            done();
         });
     });
 
-    it.skip('must not leak user set globals', function (done) {
-        browserify({
-            browserField: false,
-            bare: true,
-            builtins: false,
-            commondir: false
-        }).require('./index.js', {
-            expose: 'scope'
-        }).bundle(function (err, code) {
-            if (err) { return done(err); }
+    afterEach(function () {
+        execute = null;
+    });
 
-            var sandbox = vm.createContext({
-                expect: expect,
-                done: done
+    it('must be able to load and execute scope', function (done) {
+        execute(`
+            var scope = require('scope').create(),
+                checkrun = {};
+
+            // set a reference variable to check if scope has run
+            scope.set('_checkrun', checkrun);
+            scope.set('_expect', expect);
+
+            scope.exec([
+                '_expect(_checkrun).not.have.property("go")',
+                '_checkrun.go = true;'].join(';'),
+            function (err) {
+                if (err) { return done(err); }
+                expect(checkrun.go).be.ok();
+                done();
             });
+        `, done);
+    });
 
-            vm.runInContext(code.toString(), sandbox);
+    it('must extract native constructors', function (done) {
+        execute(`
+            var scope = require('scope').create();
+            scope.set('expect', expect);
 
-            vm.runInContext(`
-                var scope = require('scope').create();
+            scope.exec([
+                'expect(Array).be.ok()',
+                'expect(ArrayOutsideVM).be.ok()',
+                'expect(Array).not.be(ArrayOutsideVM)'
+            ].join(';'), done);
+        `, done);
+    });
 
-                // set a reference variable to check if scope has run
-                scope.set('_expect', expect);
-                scope.exec('_expect(typeof expect).be("undefined")', done);
-            `, sandbox);
-        });
+    it.skip('must not leak user set globals', function (done) {
+        execute(`
+            var scope = require('scope').create();
+
+            // set a reference variable to check if scope has run
+            scope.set('_expect', expect);
+            scope.exec('_expect(typeof expect).be("undefined")', done);
+        `, done);
     });
 });
