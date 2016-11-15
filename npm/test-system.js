@@ -5,6 +5,7 @@ require('shelljs/global');
 require('colors');
 
 var fs = require('fs'),
+    recursive = require('recursive-readdir'),
     path = require('path'),
 
     async = require('async'),
@@ -30,18 +31,19 @@ module.exports = function (exit) {
     async.series([
         // run test specs using mocha
         function (next) {
-            var mocha = new Mocha();
+            recursive(SPEC_SOURCE_DIR, function (err, files) {
+                if (err) { console.error(err.stack || err); return next(1); }
 
-            fs.readdir(SPEC_SOURCE_DIR, function (err, files) {
+                var mocha = new Mocha();
+
                 files.filter(function (file) {
                     return (file.substr(-8) === '.test.js');
-                }).forEach(function (file) {
-                    mocha.addFile(path.join(SPEC_SOURCE_DIR, file));
-                });
+                }).forEach(mocha.addFile.bind(mocha));
 
-                // start the mocha run
-                mocha.run(next);
-                mocha = null; // cleanup
+                mocha.run(function (err) {
+                    err && console.error(err.stack || err);
+                    next(err ? 1 : 0);
+                });
             });
         },
 

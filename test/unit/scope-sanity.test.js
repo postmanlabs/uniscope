@@ -4,7 +4,7 @@ describe('scope module', function () {
 
     beforeEach(function () {
         scope = Scope.create();
-        scope.set('expect', expect);
+        scope.set('expect', expect); // inject expect in scope for testing
     });
     afterEach(function () {
         scope = null;

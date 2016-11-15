@@ -25,6 +25,9 @@ module.exports = function (exit) {
 
         var mocha = new Mocha({timeout: 1000 * 60});
 
+        // specially load bootstrap file
+        mocha.addFile(path.join(SPEC_SOURCE_DIR, '_bootstrap.js'));
+
         files.filter(function (file) { // extract all test files
             return (file.substr(-8) === '.test.js');
         }).forEach(mocha.addFile.bind(mocha));
