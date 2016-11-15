@@ -14,19 +14,14 @@ module.exports = function (config) {
         // list of files / patterns to load in the browser
         files: [
             '../index.js',
-            '../test/**/*.js'
-        ],
-
-        // list of files to exclude
-        exclude: [
-            '../test/system/*'
+            '../test/unit/**/*.js'
         ],
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             '../index.js': ['browserify'], // Mention path as per your test js folder
-            '../test/**/*.js': ['browserify'] // Mention path as per your library js folder
+            '../test/unit/**/*.js': ['browserify'] // Mention path as per your library js folder
         },
         // test results reporter to use
         // possible values: 'dots', 'progress'
