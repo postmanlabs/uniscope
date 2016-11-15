@@ -45,6 +45,7 @@
     "nsp": "2.6.2",
     "packity": "0.3.2",
     "parse-gitignore": "0.3.1",
+    "recursive-readdir": "^2.1.0",
     "shelljs": "0.7.4",
     "watchify": "3.7.0"
   },
