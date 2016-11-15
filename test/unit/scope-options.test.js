@@ -1,5 +1,3 @@
-var async = require('async');
-
 describe('scope module options', function () {
     var Scope = require('../../');
 
@@ -12,18 +10,14 @@ describe('scope module options', function () {
         });
     });
 
-    it('must not forward console if the option is not set or set to false', function (done) {
-        async.parallel([
-            function (next) {
-                var scope = Scope.create({}, {expect: expect}); // no options specified
-                scope.exec(`expect(typeof console).be('undefined');`, next); // eslint-disable-line quotes
-            },
+    it('must not forward console if the option is not set', function (done) {
+        var scope = Scope.create({}, {expect: expect}); // no options specified
+        scope.exec(`expect(typeof console).be('undefined');`, done); // eslint-disable-line quotes
+    });
 
-            function (next) {
-                var scope = Scope.create({console: false}, {expect: expect}); // specified as false
-                scope.exec(`expect(typeof console).be('undefined');`, next); // eslint-disable-line quotes
-            }
-        ], done);
+    it('must not forward console if the option is set to false', function (done) {
+        var scope = Scope.create({console: false}, {expect: expect}); // specified as false
+        scope.exec(`expect(typeof console).be('undefined');`, done); // eslint-disable-line quotes
     });
 
     it('must forward native console when configured', function (done) {
