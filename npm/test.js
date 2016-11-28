@@ -9,7 +9,7 @@ async.series([
     require('./test-lint'),
     require('./test-system'),
     require('./test-unit'),
-    // require('./test-integration'),
+    require('./test-integration'),
     // run the browser tests locally and not on CI
     process.env.CI ? async.constant() : require('./test-browser')
 ], function (code) {
