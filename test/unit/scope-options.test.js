@@ -38,4 +38,19 @@ describe('scope module options', function () {
             expect(console === refConsole).be.ok();
         `, done);
     });
+
+    it('must ensure that blocked variables are not allowed', function (done) {
+        var scope = Scope.create({
+            console: true,
+            block: ['Buffer', 'myImportedGlobal']
+        }, {
+            expect: expect,
+            myImportedGlobal: {}
+        });
+
+        scope.exec(`
+            expect(Buffer).not.be.ok();
+            expect(myImportedGlobal).not.be.ok();
+        `, done);
+    });
 });
