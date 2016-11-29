@@ -47,6 +47,19 @@ module.exports = function (exit) {
             });
         },
 
+        // packity
+        function (next) {
+            var packity = require('packity'),
+                options = {
+                    path: './', dev: true
+                };
+
+            packity(options, function (err, results) {
+                packity.cliReporter(options)(err, results);
+                next(err);
+            });
+        },
+
         // execute nsp
         // programatically executing nsp is a bit tricky as we have to emulate the cli script's usage of internal
         // nsp functions.
