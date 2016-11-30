@@ -25,4 +25,31 @@ describe('scope module globals', function () {
             ].sort())
         `, done);
     });
+
+    it('must allow setting of globals', function (done) {
+        scope.set('myGlobal', {test: 123});
+        scope.exec(`
+            expect(myGlobal).eql({test: 123});
+        `, done);
+    });
+
+    it('must allow unsetting of globals', function (done) {
+        scope.set('myGlobal', {test: 123});
+        scope.unset('myGlobal');
+        scope.exec(`
+            expect(typeof myGlobal).be('undefined');
+        `, done);
+    });
+
+    it('must throw error if invalid global name is set', function () {
+        expect(function () {
+            scope.set(null, {});
+        }).to.throwError();
+    });
+
+    it('must throw error if invalid global name is provided during unset', function () {
+        expect(function () {
+            scope.unset(null);
+        }).to.throwError();
+    });
 });
