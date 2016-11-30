@@ -27,11 +27,8 @@ myscope = new Scope(globals, { // `globals` will be `window` in browser
 	eval: false, // specify whether eval is available inside sandbox
 	console: false, // specify whether native console is available
 	strict: false, // specify whether to run the script in strict mode
-
-	// provide an object with globals to be made available to the scripts
-	import: {
-		myGlobalVarName: "sample"
-	}
+}, { // provide an object with globals to be made available to the scripts
+	myGlobalVarName: "sample"
 });
 
 // set a specific variable as global
