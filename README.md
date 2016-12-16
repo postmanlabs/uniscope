@@ -64,6 +64,7 @@ myscope.exec('setTimeout(function () { __exitscope(null); }, 1000)', true, funct
 - `Scope.prototype.unset:function(name:string)`
 - `Scope.prototype.import:function(obj:object)`
 - `Scope.prototype.exec:function(code:string, [async:boolean,] callnack:function)`
+- `Scope.prototype.reset:function(locals:boolean, context:boolean)`
 
 ## List of allowed Globals
 
