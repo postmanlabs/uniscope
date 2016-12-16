@@ -1,4 +1,4 @@
-describe('scope module in unjailed mode', function () {
+describe.skip('scope module in unjailed mode', function () {
     var Scope = require('../../');
 
     describe('globals', function () {
