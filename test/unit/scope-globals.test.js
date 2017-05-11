@@ -52,4 +52,16 @@ describe('scope module globals', function () {
             scope.unset(null);
         }).to.throwError();
     });
+
+    it('must return NaN if encountered within scope', function (done) {
+        scope.exec(`
+            var foo = NaN,
+                obj = {
+                    someKey: NaN
+                }
+
+            expect(Number.isNaN(foo)).to.be(true);
+            expect(Number.isNaN(obj.someKey)).to.be(true);
+        `, done);
+    });
 });
