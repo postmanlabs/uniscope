@@ -1,5 +1,9 @@
 # Postman Uniscope Changelog
 
+#### 1.1.1 (May 11, 2017)
+* Fixed a bug where "falsey" globals were not being accurately made available inside scope
+* Updated dev dependencies to latest
+
 #### 1.1.0 (December 16, 2016)
 * Added feature to allow and reset a scope
 
