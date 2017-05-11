@@ -53,7 +53,7 @@ describe('scope module globals', function () {
         }).to.throwError();
     });
 
-    it('must return NaN if encountered within scope', function (done) {
+    it('must not set NaN to undefined if encountered within scope', function (done) {
         scope.exec(`
             var foo = NaN,
                 obj = {
