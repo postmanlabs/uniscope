@@ -15,11 +15,11 @@ describe('scope module locals', function () {
             expect(typeof userSetGlobal).be('undefined');
             userSetGlobal = true;
         `, function (err) {
-            if (err) { return done(err); }
+                if (err) { return done(err); }
 
-            scope.exec(`
-                expect(userSetGlobal).be(true);
-            `, done);
-        });
+                scope.exec(`
+                    expect(userSetGlobal).be(true);
+                `, done);
+            });
     });
 });
