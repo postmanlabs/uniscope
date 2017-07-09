@@ -27,14 +27,14 @@ describe('scope module globals', function () {
     });
 
     it('must allow setting of globals', function (done) {
-        scope.set('myGlobal', {test: 123});
+        scope.set('myGlobal', { test: 123 });
         scope.exec(`
-            expect(myGlobal).eql({test: 123});
+            expect(myGlobal).eql({ test: 123 });
         `, done);
     });
 
     it('must allow unsetting of globals', function (done) {
-        scope.set('myGlobal', {test: 123});
+        scope.set('myGlobal', { test: 123 });
         scope.unset('myGlobal');
         scope.exec(`
             expect(typeof myGlobal).be('undefined');

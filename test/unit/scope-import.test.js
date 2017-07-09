@@ -13,7 +13,7 @@ describe('scope module import globals', function () {
     it('must import an object to scope', function (done) {
         scope.import({
             glob1: 'glob1value',
-            glob2: {pi: 3.142}
+            glob2: { pi: 3.142 }
         });
 
         scope.exec(`

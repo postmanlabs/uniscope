@@ -15,7 +15,7 @@ describe('scope module', function () {
     });
 
     it('must allow setting of globals', function (done) {
-        scope.set('myGlobal', {test: 123});
+        scope.set('myGlobal', { test: 123 });
         scope.exec(`
             // expect(this).have.property('myGlobal');
             expect(typeof myGlobal).be('object');
@@ -24,21 +24,19 @@ describe('scope module', function () {
     });
 
     it('must allow unsetting of globals', function (done) {
-        scope.set('myGlobal', {test: 123});
+        scope.set('myGlobal', { test: 123 });
 
         scope.exec(`
             // expect(this).have.property('myGlobal');
             expect(typeof myGlobal).be('object');
             expect(myGlobal).eql({test: 123});
         `, function (err) {
-            if (err) { return done(err); }
+                if (err) { return done(err); }
 
-            scope.unset('myGlobal', {test: 123});
+                scope.unset('myGlobal', { test: 123 });
 
-            scope.exec(`
-                expect(typeof myGlobal).be('undefined');
-            `, done);
-        });
+                scope.exec('expect(typeof myGlobal).be("undefined");', done);
+            });
     });
 
     it('must now allow unnecessary globals from showing up', function (done) {
@@ -46,8 +44,8 @@ describe('scope module', function () {
         scope.exec(`
             expect(typeof oneTestGlobal).be('undefined');
         `, function (err) {
-            delete global.oneTestGlobal;
-            done(err);
-        });
+                delete global.oneTestGlobal;
+                done(err);
+            });
     });
 });
