@@ -23,7 +23,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "async": "2.5.0",
-    "browserify": "14.2.0",
+    "browserify": "14.5.0",
     "colors": "1.1.2",
     "editorconfig": "0.14.2",
     "eslint": "4.9.0",
