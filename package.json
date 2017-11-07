@@ -22,7 +22,7 @@
   "author": "Postman Labs <help@getpostman.com> (=)",
   "license": "Apache-2.0",
   "devDependencies": {
-    "async": "2.5.0",
+    "async": "2.6.0",
     "browserify": "14.5.0",
     "chalk": "2.3.0",
     "colors": "1.1.2",
