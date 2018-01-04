@@ -23,7 +23,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "async": "2.6.0",
-    "browserify": "14.5.0",
+    "browserify": "15.0.0",
     "chalk": "2.3.0",
     "colors": "1.1.2",
     "editorconfig": "0.15.0",
