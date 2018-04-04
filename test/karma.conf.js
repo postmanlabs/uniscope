@@ -2,7 +2,7 @@
 // Generated on Mon Nov 09 2015 18:53:12 GMT+0530 (IST)
 
 module.exports = function (config) {
-    config.set({
+    var configuration = {
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
@@ -35,7 +35,7 @@ module.exports = function (config) {
         colors: true,
 
         // level of logging
-        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        // one of: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_WARN,
 
         // enable / disable watching file and executing tests whenever any file changes
@@ -68,5 +68,17 @@ module.exports = function (config) {
                 timeout: 10000 // 10 seconds
             }
         }
-    });
+    };
+
+    if (process.env.TRAVIS) { // eslint-disable-line no-process-env
+        configuration.customLaunchers = {
+            chromeTravis: {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
+            }
+        };
+        configuration.browsers = ['chromeTravis'];
+    }
+
+    config.set(configuration);
 };

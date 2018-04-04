@@ -17,9 +17,7 @@ describe('scope module locals', function () {
         `, function (err) {
             if (err) { return done(err); }
 
-            scope.exec(`
-                expect(userSetGlobal).be(true);
-            `, done);
+            scope.exec('expect(userSetGlobal).be(true);', done);
         });
     });
 });

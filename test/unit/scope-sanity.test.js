@@ -15,7 +15,7 @@ describe('scope module', function () {
     });
 
     it('must allow setting of globals', function (done) {
-        scope.set('myGlobal', {test: 123});
+        scope.set('myGlobal', { test: 123 });
         scope.exec(`
             // expect(this).have.property('myGlobal');
             expect(typeof myGlobal).be('object');
@@ -24,7 +24,7 @@ describe('scope module', function () {
     });
 
     it('must allow unsetting of globals', function (done) {
-        scope.set('myGlobal', {test: 123});
+        scope.set('myGlobal', { test: 123 });
 
         scope.exec(`
             // expect(this).have.property('myGlobal');
@@ -33,11 +33,9 @@ describe('scope module', function () {
         `, function (err) {
             if (err) { return done(err); }
 
-            scope.unset('myGlobal', {test: 123});
+            scope.unset('myGlobal', { test: 123 });
 
-            scope.exec(`
-                expect(typeof myGlobal).be('undefined');
-            `, done);
+            scope.exec('expect(typeof myGlobal).be("undefined");', done);
         });
     });
 
