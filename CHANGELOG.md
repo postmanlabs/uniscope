@@ -1,6 +1,11 @@
 # Postman Uniscope Changelog
 
+#### v1.1.2 (April 4, 2018)
+* Updated dependencies :arrow_up:
+
 #### 1.1.1 (May 11, 2017)
+* Merge pull request #62 from postmanlabs/feature/ci-browser-tests
+* Merge pull request #62 from postmanlabs/feature/ci-browser-tests
 * Fixed a bug where "falsey" globals were not being accurately made available inside scope
 * Updated dev dependencies to latest
 
