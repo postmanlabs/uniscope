@@ -31,12 +31,12 @@ describe('scope module', function () {
             expect(typeof myGlobal).be('object');
             expect(myGlobal).eql({test: 123});
         `, function (err) {
-                if (err) { return done(err); }
+            if (err) { return done(err); }
 
-                scope.unset('myGlobal', { test: 123 });
+            scope.unset('myGlobal', { test: 123 });
 
-                scope.exec('expect(typeof myGlobal).be("undefined");', done);
-            });
+            scope.exec('expect(typeof myGlobal).be("undefined");', done);
+        });
     });
 
     it('must now allow unnecessary globals from showing up', function (done) {
@@ -44,8 +44,8 @@ describe('scope module', function () {
         scope.exec(`
             expect(typeof oneTestGlobal).be('undefined');
         `, function (err) {
-                delete global.oneTestGlobal;
-                done(err);
-            });
+            delete global.oneTestGlobal;
+            done(err);
+        });
     });
 });
