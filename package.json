@@ -12,7 +12,9 @@
     "test-system": "node npm/test-system.js",
     "test-lint": "node npm/test-lint.js",
     "test-unit": "node npm/test-unit.js",
-    "test": "node npm/test.js"
+    "test": "node npm/test.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "eval",
@@ -44,7 +46,7 @@
     "karma-mocha-reporter": "2.2.5",
     "lodash": "4.17.10",
     "mocha": "5.2.0",
-    "nsp": "2.8.1",
+    "nsp": "3.0.0",
     "packity": "0.3.2",
     "parse-gitignore": "0.4.0",
     "recursive-readdir": "^2.1.0",
@@ -58,5 +60,9 @@
   "bugs": {
     "url": "https://github.com/postmanlabs/uniscope/issues"
   },
-  "homepage": "https://github.com/postmanlabs/uniscope#readme"
+  "homepage": "https://github.com/postmanlabs/uniscope#readme",
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.91.0"
+  }
 }
