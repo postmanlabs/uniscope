@@ -2,10 +2,8 @@
  * @fileOverview Ensures nsprc is as expected
  */
 
-var fs = require('fs'),
-    expect = require('expect.js');
+var fs = require('fs');
 
-/* global describe, it, before */
 describe('nsp', function () {
     var nsprc,
         pkg;
@@ -16,12 +14,12 @@ describe('nsp', function () {
     });
 
     it('should be a dev dependency', function () {
-        expect(pkg.devDependencies && pkg.devDependencies.nsp).to.be.ok();
+        expect(pkg.devDependencies && pkg.devDependencies.nsp).to.be.ok;
     });
 
     describe('nsprc', function () {
         it('should exist', function () {
-            expect(nsprc).to.be.ok();
+            expect(nsprc).to.be.ok;
         });
 
         it('should not have any exceptions', function () {
