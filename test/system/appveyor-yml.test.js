@@ -1,8 +1,8 @@
-describe('.appveyor.yml', function () {
-    var fs = require('fs'),
-        yaml = require('js-yaml'),
+var fs = require('fs'),
+    yaml = require('js-yaml');
 
-        appveyorYAML,
+describe('.appveyor.yml', function () {
+    var appveyorYAML,
         appveyorYAMLError;
 
     try {
@@ -22,7 +22,7 @@ describe('.appveyor.yml', function () {
 
     describe('structure', function () {
         it('should have an init script', function () {
-            expect(appveyorYAML.init[0]).to.equal('git config --global core.autocrlf input');
+            expect(appveyorYAML).to.have.property('init').that.eql(['git config --global core.autocrlf input']);
         });
 
         it('should match the Travis environment matrix', function () {
@@ -43,9 +43,13 @@ describe('.appveyor.yml', function () {
         });
 
         it('should have correct install scripts', function () {
-            expect(appveyorYAML.install[0].ps).to.equal('Install-Product node $env:nodejs_version');
-            expect(appveyorYAML.install[1]).to.equal('npm cache clean --force');
-            expect(appveyorYAML.install[2]).to.equal('appveyor-retry npm install');
+            expect(appveyorYAML).to.have.property('install').that.eql([
+                {
+                    ps: 'Install-Product node $env:nodejs_version'
+                },
+                'npm cache clean --force',
+                'appveyor-retry npm install'
+            ]);
         });
 
         it('should have the MS build script and deploy to be turned off', function () {
@@ -56,10 +60,13 @@ describe('.appveyor.yml', function () {
         });
 
         it('should have notifications configured correctly', function () {
-            expect(appveyorYAML.notifications).to.be.an('array');
-            expect(appveyorYAML.notifications[0].provider).to.equal('Slack');
-            expect(appveyorYAML.notifications[0].incoming_webhook.secure,
-                '"secure" not configured in incoming_webhook').to.be.ok;
+            expect(appveyorYAML).to.have.property('notifications').that.eql([{
+                incoming_webhook: {
+                    // eslint-disable-next-line max-len
+                    secure: 'PRDZ1nhG/cQrwMgCLXsWvTDJtYxv78GJrSlVYpMzpUploVWDzBlpMqmFr9WxZQkY/lxsqCSpGX4zgTYzlte1WMWnghqTIFE8u7svlXHa/tk='
+                },
+                provider: 'Slack'
+            }]);
         });
     });
 });
