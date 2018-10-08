@@ -1,6 +1,7 @@
+var Scope = require('../../');
+
 describe('scope module reset', function () {
-    var Scope = require('../../'),
-        scope;
+    var scope;
 
     beforeEach(function () {
         scope = Scope.create({
@@ -18,16 +19,16 @@ describe('scope module reset', function () {
         });
 
         scope.exec(`
-            expect(var1).be('var1');
-            expect(var2).be('var2');
+            expect(var1).to.equal('var1');
+            expect(var2).to.equal('var2');
         `, function (err) {
             if (err) { return done(err); }
 
             scope.reset();
 
             scope.exec(`
-                expect(typeof var1).be('undefined');
-                expect(typeof var2).be('undefined');
+                expect(typeof var1).to.equal('undefined');
+                expect(typeof var2).to.equal('undefined');
             `, done);
         });
     });
@@ -40,10 +41,10 @@ describe('scope module reset', function () {
 
         // we create some globals here
         scope.exec(`
-            expect(var1).be('var1');
-            expect(var2).be('var2');
+            expect(var1).to.equal('var1');
+            expect(var2).to.equal('var2');
 
-            expect(typeof userGlobal).be('undefined');
+            expect(typeof userGlobal).to.equal('undefined');
             userGlobal = true;
         `, function (err) {
             if (err) { return done(err); }
@@ -52,10 +53,10 @@ describe('scope module reset', function () {
 
             // we do not test globals to exist as this is tested elsewhere
             scope.exec(`
-                expect(typeof var1).be('undefined');
-                expect(typeof var2).be('undefined');
+                expect(typeof var1).to.equal('undefined');
+                expect(typeof var2).to.equal('undefined');
 
-                expect(typeof userGlobal).be('undefined');
+                expect(typeof userGlobal).to.equal('undefined');
             `, done);
         });
     });

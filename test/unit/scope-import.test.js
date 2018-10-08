@@ -1,6 +1,7 @@
+var Scope = require('../../');
+
 describe('scope module import globals', function () {
-    var Scope = require('../../'),
-        scope;
+    var scope;
 
     beforeEach(function () {
         scope = Scope.create();
@@ -10,15 +11,15 @@ describe('scope module import globals', function () {
         scope = null;
     });
 
-    it('must import an object to scope', function (done) {
+    it('should import an object to scope', function (done) {
         scope.import({
             glob1: 'glob1value',
             glob2: { pi: 3.142 }
         });
 
         scope.exec(`
-            expect(glob1).eql('glob1value');
-            expect(glob2).eql({pi: 3.142});
+            expect(glob1).to.eql('glob1value');
+            expect(glob2).to.eql({pi: 3.142});
         `, done);
     });
 });

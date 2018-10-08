@@ -1,6 +1,7 @@
+var Scope = require('../../');
+
 describe('scope module', function () {
-    var Scope = require('../../'),
-        scope;
+    var scope;
 
     beforeEach(function () {
         scope = Scope.create();
@@ -10,39 +11,39 @@ describe('scope module', function () {
         scope = null;
     });
 
-    it('must create a new scope', function () {
-        expect(scope instanceof Scope).be.ok();
+    it('should create a new scope', function () {
+        expect(scope instanceof Scope).to.be.ok;
     });
 
-    it('must allow setting of globals', function (done) {
+    it('should allow setting of globals', function (done) {
         scope.set('myGlobal', { test: 123 });
         scope.exec(`
-            // expect(this).have.property('myGlobal');
-            expect(typeof myGlobal).be('object');
-            expect(myGlobal).eql({test: 123});
+            // expect(this).to.have.property('myGlobal');
+            expect(typeof myGlobal).to.equal('object');
+            expect(myGlobal).to.eql({test: 123});
         `, done);
     });
 
-    it('must allow unsetting of globals', function (done) {
+    it('should allow unsetting of globals', function (done) {
         scope.set('myGlobal', { test: 123 });
 
         scope.exec(`
-            // expect(this).have.property('myGlobal');
-            expect(typeof myGlobal).be('object');
-            expect(myGlobal).eql({test: 123});
+            // expect(this).to.have.property('myGlobal');
+            expect(typeof myGlobal).to.equal('object');
+            expect(myGlobal).to.eql({test: 123});
         `, function (err) {
             if (err) { return done(err); }
 
             scope.unset('myGlobal', { test: 123 });
 
-            scope.exec('expect(typeof myGlobal).be("undefined");', done);
+            scope.exec('expect(typeof myGlobal).to.equal("undefined");', done);
         });
     });
 
-    it('must now allow unnecessary globals from showing up', function (done) {
+    it('should now allow unnecessary globals from showing up', function (done) {
         global.oneTestGlobal = true;
         scope.exec(`
-            expect(typeof oneTestGlobal).be('undefined');
+            expect(typeof oneTestGlobal).to.equal('undefined');
         `, function (err) {
             delete global.oneTestGlobal;
             done(err);
