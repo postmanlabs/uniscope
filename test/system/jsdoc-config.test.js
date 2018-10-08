@@ -3,11 +3,10 @@
  * on the content of the file as well. Any change to .jsdoc-config.json must be accompanied by valid test case in this
  * spec-sheet.
  */
+var fs = require('fs');
 
 describe('JSDoc configuration', function () {
-    var fs = require('fs'),
-
-        json,
+    var json,
         content,
         jsdocConfigPath = './.jsdoc-config.json';
 
