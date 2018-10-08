@@ -45,7 +45,6 @@
     "karma-mocha-reporter": "2.2.5",
     "lodash": "4.17.11",
     "mocha": "5.2.0",
-    "nsp": "2.8.1",
     "packity": "0.3.2",
     "parse-gitignore": "0.4.0",
     "recursive-readdir": "^2.1.0",
