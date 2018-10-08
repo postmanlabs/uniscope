@@ -3,10 +3,10 @@
  * content of the file as well. Any change to package.json must be accompanied by valid test case in this spec-sheet.
  */
 var _ = require('lodash'),
-    parseIgnore = require('parse-gitignore');
+    parseIgnore = require('parse-gitignore'),
+    fs = require('fs');
 
 describe('project repository', function () {
-    var fs = require('fs');
 
     describe('package.json', function () {
         var content,
