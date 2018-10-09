@@ -13,12 +13,12 @@ describe('scope module options', function () {
 
     it('should not forward console if the option is not set', function (done) {
         var scope = Scope.create({}, { expect: expect }); // no options specified
-        scope.exec(`expect(typeof console).to.equal('undefined');`, done); // eslint-disable-line quotes
+        scope.exec(`expect(console).to.be.undefined;`, done); // eslint-disable-line quotes
     });
 
     it('should not forward console if the option is set to false', function (done) {
         var scope = Scope.create({ console: false }, { expect: expect }); // specified as false
-        scope.exec(`expect(typeof console).to.equal('undefined');`, done); // eslint-disable-line quotes
+        scope.exec(`expect(console).to.be.undefined;`, done); // eslint-disable-line quotes
     });
 
     it('should forward native console when configured', function (done) {
@@ -36,7 +36,7 @@ describe('scope module options', function () {
 
         scope.exec(`
             expect(console).to.be.an('object');
-            expect(console === refConsole).to.be.ok;
+            expect(console).to.equal(refConsole);
         `, done);
     });
 
