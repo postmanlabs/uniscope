@@ -62,7 +62,7 @@ describe('scope module globals', function () {
                 }
 
             expect(foo).to.be.NaN;
-            expect(obj).to.have.property('someKey').which.is.to.be.NaN;
+            expect(obj).to.have.property('someKey').which.is.NaN;
         `, done);
     });
 });
