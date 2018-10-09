@@ -16,15 +16,13 @@ describe('scope module security', function () {
 
         it('"global" must not be visible', function (done) {
             scope.exec(`
-                expect(typeof global).to.equal('undefined');
-                expect(this.global).to.be.undefined;
+                expect(global).to.be.undefined;
             `, done);
         });
 
         it('"process" must not be visible', function (done) {
             scope.exec(`
-                expect(typeof process).to.equal('undefined');
-                expect(this.process).to.be.undefined;
+                expect(process).to.be.undefined;
             `, done);
         });
     });
@@ -43,7 +41,7 @@ describe('scope module security', function () {
 
         it('should not provide access to `arguments` variable', function (done) {
             scope.exec(`
-                expect(typeof arguments).to.equal('undefined');
+                expect(arguments).to.be.undefined;
             `, done);
         });
     });
