@@ -1,6 +1,7 @@
+var Scope = require('../../');
+
 describe('scope module locals', function () {
-    var Scope = require('../../'),
-        scope;
+    var scope;
 
     beforeEach(function () {
         scope = Scope.create();
@@ -10,14 +11,14 @@ describe('scope module locals', function () {
         scope = null;
     });
 
-    it('must retain locally set globals in subsequent calls', function (done) {
+    it('should retain locally set globals in subsequent calls', function (done) {
         scope.exec(`
-            expect(typeof userSetGlobal).be('undefined');
+            expect(typeof userSetGlobal).to.equal('undefined');
             userSetGlobal = true;
         `, function (err) {
             if (err) { return done(err); }
 
-            scope.exec('expect(userSetGlobal).be(true);', done);
+            scope.exec('expect(userSetGlobal).to.be.true;', done);
         });
     });
 });
