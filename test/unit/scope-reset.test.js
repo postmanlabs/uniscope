@@ -27,8 +27,8 @@ describe('scope module reset', function () {
             scope.reset();
 
             scope.exec(`
-                expect(typeof var1).to.equal('undefined');
-                expect(typeof var2).to.equal('undefined');
+                expect(this.var1).to.be.undefined;
+                expect(this.var2).to.be.undefined;
             `, done);
         });
     });
@@ -44,7 +44,7 @@ describe('scope module reset', function () {
             expect(var1).to.equal('var1');
             expect(var2).to.equal('var2');
 
-            expect(typeof userGlobal).to.equal('undefined');
+            expect(this.userGlobal).to.be.undefined;
             userGlobal = true;
         `, function (err) {
             if (err) { return done(err); }
@@ -53,10 +53,10 @@ describe('scope module reset', function () {
 
             // we do not test globals to exist as this is tested elsewhere
             scope.exec(`
-                expect(typeof var1).to.equal('undefined');
-                expect(typeof var2).to.equal('undefined');
+                expect(this.var1).to.be.undefined;
+                expect(this.var2).to.be.undefined;
 
-                expect(typeof userGlobal).to.equal('undefined');
+                expect(this.userGlobal).to.be.undefined;
             `, done);
         });
     });
