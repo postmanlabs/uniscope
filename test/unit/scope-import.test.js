@@ -18,7 +18,7 @@ describe('scope module import globals', function () {
         });
 
         scope.exec(`
-            expect(glob1).to.eql('glob1value');
+            expect(glob1).to.equal('glob1value');
             expect(glob2).to.eql({pi: 3.142});
         `, done);
     });
