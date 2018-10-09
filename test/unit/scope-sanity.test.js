@@ -19,8 +19,7 @@ describe('scope module', function () {
         scope.set('myGlobal', { test: 123 });
         scope.exec(`
             // expect(this).to.have.property('myGlobal');
-            expect(typeof myGlobal).to.equal('object');
-            expect(myGlobal).to.eql({test: 123});
+            expect(myGlobal).to.be.an('object').that.eql({test: 123});
         `, done);
     });
 
@@ -29,21 +28,20 @@ describe('scope module', function () {
 
         scope.exec(`
             // expect(this).to.have.property('myGlobal');
-            expect(typeof myGlobal).to.equal('object');
-            expect(myGlobal).to.eql({test: 123});
+            expect(myGlobal).to.be.an('object').that.eql({test: 123});
         `, function (err) {
             if (err) { return done(err); }
 
             scope.unset('myGlobal', { test: 123 });
 
-            scope.exec('expect(typeof myGlobal).to.equal("undefined");', done);
+            scope.exec('expect(this.myGlobal).to.be.undefined;', done);
         });
     });
 
     it('should now allow unnecessary globals from showing up', function (done) {
         global.oneTestGlobal = true;
         scope.exec(`
-            expect(typeof oneTestGlobal).to.equal('undefined');
+            expect(this.oneTestGlobal).to.be.undefined;
         `, function (err) {
             delete global.oneTestGlobal;
             done(err);
