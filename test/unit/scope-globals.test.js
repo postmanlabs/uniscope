@@ -38,7 +38,7 @@ describe('scope module globals', function () {
         scope.set('myGlobal', { test: 123 });
         scope.unset('myGlobal');
         scope.exec(`
-            expect(typeof myGlobal).to.equal('undefined');
+            expect(this.myGlobal).to.be.undefined;
         `, done);
     });
 
@@ -61,8 +61,8 @@ describe('scope module globals', function () {
                     someKey: NaN
                 }
 
-            expect(Number.isNaN(foo)).to.be.true;
-            expect(Number.isNaN(obj.someKey)).to.be.true;
+            expect(foo).to.be.NaN;
+            expect(obj).to.have.property('someKey').which.is.to.be.NaN;
         `, done);
     });
 });
