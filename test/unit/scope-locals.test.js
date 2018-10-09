@@ -13,7 +13,7 @@ describe('scope module locals', function () {
 
     it('should retain locally set globals in subsequent calls', function (done) {
         scope.exec(`
-            expect(typeof userSetGlobal).to.equal('undefined');
+            expect(this.userSetGlobal).to.be.undefined;
             userSetGlobal = true;
         `, function (err) {
             if (err) { return done(err); }
