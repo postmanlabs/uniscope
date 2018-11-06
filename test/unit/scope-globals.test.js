@@ -1,6 +1,7 @@
+var Scope = require('../../');
+
 describe('scope module globals', function () {
-    var Scope = require('../../'),
-        scope;
+    var scope;
 
     beforeEach(function () {
         scope = Scope.create();
@@ -10,7 +11,7 @@ describe('scope module globals', function () {
         scope = null;
     });
 
-    it('must be limited to a known subset in context', function (done) {
+    it('should be limited to a known subset in context', function (done) {
         scope.exec(`
             var availableGlobals = Object.getOwnPropertyNames(this).sort();
             expect(availableGlobals).eql(['Array', 'ArrayBuffer', 'Buffer', 'Boolean', 'DataView', 'Date', 'decodeURI',
@@ -26,42 +27,42 @@ describe('scope module globals', function () {
         `, done);
     });
 
-    it('must allow setting of globals', function (done) {
+    it('should allow setting of globals', function (done) {
         scope.set('myGlobal', { test: 123 });
         scope.exec(`
-            expect(myGlobal).eql({ test: 123 });
+            expect(myGlobal).to.eql({ test: 123 });
         `, done);
     });
 
-    it('must allow unsetting of globals', function (done) {
+    it('should allow unsetting of globals', function (done) {
         scope.set('myGlobal', { test: 123 });
         scope.unset('myGlobal');
         scope.exec(`
-            expect(typeof myGlobal).be('undefined');
+            expect(this.myGlobal).to.be.undefined;
         `, done);
     });
 
-    it('must throw error if invalid global name is set', function () {
+    it('should throw error if invalid global name is set', function () {
         expect(function () {
             scope.set(null, {});
-        }).to.throwError();
+        }).to.throw();
     });
 
-    it('must throw error if invalid global name is provided during unset', function () {
+    it('should throw error if invalid global name is provided during unset', function () {
         expect(function () {
             scope.unset(null);
-        }).to.throwError();
+        }).to.throw();
     });
 
-    it('must not set NaN to undefined if encountered within scope', function (done) {
+    it('should not set NaN to undefined if encountered within scope', function (done) {
         scope.exec(`
             var foo = NaN,
                 obj = {
                     someKey: NaN
                 }
 
-            expect(Number.isNaN(foo)).to.be(true);
-            expect(Number.isNaN(obj.someKey)).to.be(true);
+            expect(foo).to.be.NaN;
+            expect(obj).to.have.property('someKey').which.is.NaN;
         `, done);
     });
 });

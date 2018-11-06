@@ -1,5 +1,8 @@
 # Postman Uniscope Changelog
 
+#### Unreleased
+- Migrated tests to chai expect assertions
+
 #### v1.1.2 (April 4, 2018)
 * Updated dependencies :arrow_up:
 
