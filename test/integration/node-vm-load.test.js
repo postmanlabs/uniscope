@@ -37,7 +37,7 @@ describe('vm module', function () {
         execute = null;
     });
 
-    it('must be able to load and execute scope', function (done) {
+    it('should be able to load and execute scope', function (done) {
         execute(`
             var scope = require('scope').create(),
                 checkrun = {};
@@ -47,30 +47,30 @@ describe('vm module', function () {
             scope.set('_expect', expect);
 
             scope.exec([
-                '_expect(_checkrun).not.have.property("go")',
+                '_expect(_checkrun).to.not.have.property("go")',
                 '_checkrun.go = true;'].join(';'),
             function (err) {
                 if (err) { return done(err); }
-                expect(checkrun.go).be.ok();
+                expect(checkrun.go).to.be.true;
                 done();
             });
         `, done);
     });
 
-    it('must extract native constructors', function (done) {
+    it('should extract native constructors', function (done) {
         execute(`
             var scope = require('scope').create();
             scope.set('expect', expect);
 
             scope.exec([
-                'expect(Array).be.ok()',
-                'expect(ArrayOutsideVM).be.ok()',
-                'expect(Array).not.be(ArrayOutsideVM)'
+                'expect(Array).to.be.ok',
+                'expect(ArrayOutsideVM).to.be.ok',
+                'expect(Array).to.not.equal(ArrayOutsideVM)'
             ].join(';'), done);
         `, done);
     });
 
-    it('must allow user set globals to be available on subsequent calls', function (done) {
+    it('should allow user set globals to be available on subsequent calls', function (done) {
         execute(`
             var scope = require('scope').create();
             scope.set('expect', expect);
@@ -79,19 +79,19 @@ describe('vm module', function () {
             scope.exec('extra = true', function (err) {
                 if (err) { return done(err); }
 
-                scope.exec('expect(extra).be.ok()', done);
+                scope.exec('expect(extra).to.be.true', done);
             });
         `, done);
     });
 
     // // this test is a bit tricky and irrelevant in VM
-    // it.skip('must not leak user set globals', function (done) {
+    // it.skip('should not leak user set globals', function (done) {
     //     execute(`
     //         var scope = require('scope').create();
 
     //         // set a reference variable to check if scope has run
     //         scope.set('_expect', expect);
-    //         scope.exec('_expect(typeof expect).be("undefined")', done);
+    //         scope.exec('_expect(this.expect).to.be.undefined)', done);
     //     `, done);
     // });
 });
