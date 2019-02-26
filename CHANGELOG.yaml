@@ -10,7 +10,7 @@ master:
 1.1.1:
   date: 2017-05-11
   fixed bugs:
-    - Merge pull request (GitHub 62) from postmanlabs/feature/ci-browser-tests
+    - Merge pull request (GH-62) from postmanlabs/feature/ci-browser-tests
     - >-
       Fixed a bug where "falsey" globals were not being accurately made
       available inside scope
