@@ -28,7 +28,7 @@ master:
     - Fixed dependency resolution issue
 
 1.0.0:
-  date: 2016-12-xx
+  date: 2016-12-16
   breaking changes:
     - Ensured that user globals are stageful globals
     - >-
