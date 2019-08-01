@@ -1,0 +1,121 @@
+1.1.3:
+  date: 2019-08-01
+  chores:
+    - Migrated tests to chai expect assertions
+    - Updated dependencies
+
+1.1.2:
+  date: 2018-04-4
+  chores:
+    - Updated dependencies
+
+1.1.1:
+  date: 2017-05-11
+  fixed bugs:
+    - GH-62 Merge pull request from postmanlabs/feature/ci-browser-tests
+    - >-
+      Fixed a bug where "falsey" globals were not being accurately made
+      available inside scope
+  chores:
+    - Updated dev dependencies to latest
+
+1.1.0:
+  date: 2016-12-16
+  new features:
+    - Added feature to allow and reset a scope
+
+1.0.1:
+  date: 2016-12-16
+  fixed bugs:
+    - Fixed dependency resolution issue
+
+1.0.0:
+  date: 2016-12-16
+  breaking changes:
+    - Ensured that user globals are stageful globals
+    - >-
+      Added concept of a _locals state variables to hold on to user generated
+      variables and ignore them in subsequent runs
+    - Added a half-baked 3-way diff utility function
+    - >-
+      Removed the tests for “jailed” mode that was mistakenly left skipped in
+      previous commits
+    - >-
+      Options have been streamlined to be part of scope and root context is
+      generated once.
+    - Got rid of “unjailed” mode
+
+0.1.1:
+  date: 2016-12-2
+  fixed bugs:
+    - Jailed mode fix
+
+0.1.1-beta.1:
+  date: 2016-12-1
+  fixed bugs:
+    - 'Fixed an issue with jailed:false not being respected'
+
+0.1.0:
+  date: 2016-11-30
+  new features:
+    - 'Support for `ignored`, `blocked` and `jailed` globals'
+  fixed bugs:
+    - Fix bug where console was blocked even if passed as import
+
+0.1.0-beta.2:
+  date: 2016-11-29
+  new features:
+    - Added support to disable the jailed mode of scope
+    - >-
+      Added support for blocked variables and made ignored variables
+      configurable
+    - Added checks to ensure integrity of global args and their values
+    - Added utility function to clone options and save defaults in the process
+    - Added vm support
+  chores:
+    - Cleaned up a few jsdoc entries
+    - 'Removed unwanted packages, updated README and added packing system tests'
+
+0.1.0-beta.1:
+  date: 2016-11-16
+  new features:
+    - >-
+      Added a separate context getter function the emulates context when a valid
+      one is not found.
+    - >-
+      Enabled integration tests and split the non-working vm test to a separate
+      skipped spec
+    - Removed superfluous character escaping
+    - Separated test cases regarding console forwarding option of scope.
+    - >-
+      Added integration tests. The one vm test added is currently skipped as it
+      is pending vm support to be added in Scope
+    - Made system test spec loader recursive
+    - >-
+      Isolated browser tests to unit tests only, since integration and system
+      tests are not all isomorphic
+    - Added security check to prevent access to arguments variable
+    - Added options to import globals during construction
+    - Added check when .exec callback is missing
+    - Moved scope source code to its separate folder
+    - >-
+      Improved test coverage by adding more tests to variable set and import
+      flows
+    - Moved karma test config inside test folder to de-clutter root
+    - Moved mocha related lint configuration to `test` folder
+  fixed bugs:
+    - >-
+      Fixed issue with trailing array accessor in Node v6 causing transferable
+      to bleed into scope
+  chores:
+    - Improved code documentation
+    - Added code license reference to index file
+
+0.0.2:
+  date: 2016-10-5
+  initial release:
+    - Added a warning banner at the most critical part of the scope code
+    - >-
+      Fixed issues with dependencies and made Scope get executed as an
+      expression
+    - first code import
