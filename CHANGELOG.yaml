@@ -1,6 +1,7 @@
 master:
   new features:
     - Migrated tests to chai expect assertions
+    - Updated dependencies
 
 1.1.2:
   date: 2018-04-4
