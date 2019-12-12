@@ -26,11 +26,12 @@ module.exports = function (exit) {
     var Mocha = require('mocha'),
         nyc = new NYC({
             hookRequire: true,
-            reporter: ['text', 'lcov', 'text-summary'],
+            reporter: ['text', 'lcov', 'text-summary', 'json'],
             reportDir: COV_REPORT_PATH,
             tempDirectory: COV_REPORT_PATH
         });
 
+    nyc.reset();
     nyc.wrap();
     // add all spec files to mocha
     recursive(SPEC_SOURCE_DIR, function (err, files) {
@@ -54,10 +55,10 @@ module.exports = function (exit) {
 
             runError && console.error(runError.stack || runError);
 
-            nyc.reset();
             nyc.writeCoverageFile();
             nyc.report();
-            exit(runError ? 1 : 0);
+
+            exit(process.exitCode || runError ? 1 : 0);
         });
         // cleanup
         mocha = null;
