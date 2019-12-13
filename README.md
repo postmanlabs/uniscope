@@ -1,4 +1,4 @@
-# uniscope
+# Uniscope [![Build Status](https://travis-ci.org/postmanlabs/uniscope.svg?branch=develop)](https://travis-ci.org/postmanlabs/uniscope) [![codecov](https://codecov.io/gh/postmanlabs/uniscope/branch/develop/graph/badge.svg)](https://codecov.io/gh/postmanlabs/uniscope)
 
 The goal of this module is to provide a uniform execution environment to a JavaScript code between browser and NodeJS.
 For example, global functions and objects in NodeJS such as `setImmediate` and `global` is not easily available to the
