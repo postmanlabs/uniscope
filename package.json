@@ -12,7 +12,9 @@
     "test-system": "node npm/test-system.js",
     "test-lint": "node npm/test-lint.js",
     "test-unit": "node npm/test-unit.js",
-    "test": "npm run test-lint && npm run test-system && npm run test-unit && npm run test-integration && npm run test-browser"
+    "test": "npm run test-lint && npm run test-system && npm run test-unit && npm run test-integration && npm run test-browser",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "eval",
@@ -64,5 +66,9 @@
     "ignore": [
       "eslint-plugin-jsdoc"
     ]
+  },
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.316.1"
   }
 }
