@@ -1,0 +1,44 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - eslint-plugin-lodash > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - async > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - eslint > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - eslint-plugin-jsdoc > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - karma > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - karma-browserify > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - eslint > inquirer > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - eslint > table > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - jsdoc > catharsis > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - jsdoc > requizzle > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - karma > combine-lists > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - mocha > yargs-unparser > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - jsdoc-to-markdown > jsdoc-api > jsdoc > catharsis > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - jsdoc-to-markdown > jsdoc-api > jsdoc > requizzle > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash:
+        patched: '2020-05-01T03:09:04.684Z'
