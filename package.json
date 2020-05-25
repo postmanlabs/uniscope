@@ -48,7 +48,7 @@
     "parse-gitignore": "1.0.1",
     "puppeteer": "1.19.0",
     "recursive-readdir": "2.2.2",
-    "shelljs": "0.8.3",
+    "shelljs": "0.8.4",
     "watchify": "3.11.1",
     "yankee": "1.0.8"
   },
