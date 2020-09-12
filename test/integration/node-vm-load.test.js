@@ -1,3 +1,5 @@
+const expect = require('chai').expect;
+
 describe('vm module', function () {
     var vm = require('vm'),
         browserify = require('browserify'),

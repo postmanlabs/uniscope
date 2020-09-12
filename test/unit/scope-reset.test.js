@@ -1,14 +1,18 @@
-var Scope = require('../../');
+const expect = require('chai').expect,
+    Scope = require('../../');
 
 describe('scope module reset', function () {
     var scope;
 
     beforeEach(function () {
+        global.expect = expect;
+
         scope = Scope.create({
             ignore: ['expect']
         });
     });
     afterEach(function () {
+        delete global.expect;
         scope = null;
     });
 

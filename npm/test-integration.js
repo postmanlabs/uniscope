@@ -6,7 +6,6 @@
 
 var path = require('path'),
     chalk = require('chalk'),
-    expect = require('chai').expect,
     recursive = require('recursive-readdir'),
 
     SPEC_SOURCE_DIR = path.join('test', 'integration');
@@ -32,12 +31,7 @@ module.exports = function (exit) {
         }).forEach(mocha.addFile.bind(mocha));
 
         // start the mocha run
-        global.expect = expect; // for easy reference
-
         mocha.run(function (runError) {
-            // clear references and overrides
-            delete global.expect;
-
             runError && console.error(runError.stack || runError);
 
             exit(runError || process.exitCode ? 1 : 0);
