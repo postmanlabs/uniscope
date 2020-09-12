@@ -41,9 +41,35 @@ describe('scope module', function () {
     it('should now allow unnecessary globals from showing up', function (done) {
         global.oneTestGlobal = true;
         scope.exec(`
+            expect(oneTestGlobal).to.be.undefined;
             expect(this.oneTestGlobal).to.be.undefined;
         `, function (err) {
             delete global.oneTestGlobal;
+            done(err);
+        });
+    });
+
+    it('should handle globals with invalid identifer name', function (done) {
+        global['123'] = true;
+        global['a-b'] = true;
+        scope.exec(`
+            expect(this['123']).to.be.undefined;
+            expect(this['a-b']).to.be.undefined;
+        `, function (err) {
+            delete global['123'];
+            delete global['a-b'];
+            done(err);
+        });
+    });
+
+    // @todo update VALID_IDENTIFIER regular expression to support unicode identifers
+    it.skip('should handle globals with unicode identifer name', function (done) {
+        global.ಠ_ಠ = true;
+        scope.exec(`
+            expect(this.ಠ_ಠ).to.be.undefined;
+            expect(ಠ_ಠ).to.be.undefined; // @fixme
+        `, function (err) {
+            delete global.ಠ_ಠ;
             done(err);
         });
     });
