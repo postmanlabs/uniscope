@@ -30,6 +30,10 @@ describe('.editorconfig', function () {
         expect(config.indent_style).to.equal('space');
     });
 
+    it('should have a max_length of 120', function () {
+        expect(config.max_length).to.equal(120);
+    });
+
     it('should have a truthy insert_final_newline value', function () {
         expect(config.insert_final_newline, 'Should insert final line').to.be.true;
     });
