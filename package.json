@@ -2,10 +2,23 @@
   "name": "uniscope",
   "version": "1.1.3",
   "description": "Allows one to evaluate a code within a controlled environment",
+  "author": "Postman Inc.",
+  "license": "Apache-2.0",
   "main": "index.js",
-  "directories": {
-    "test": "test"
+  "homepage": "https://github.com/postmanlabs/uniscope#readme",
+  "bugs": {
+    "url": "https://github.com/postmanlabs/uniscope/issues",
+    "email": "help@postman.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/postmanlabs/uniscope.git"
+  },
+  "keywords": [
+    "eval",
+    "scope",
+    "postman"
+  ],
   "scripts": {
     "test-browser": "node npm/test-browser.js",
     "test-integration": "node npm/test-integration.js",
@@ -14,13 +27,6 @@
     "test-unit": "node npm/test-unit.js",
     "test": "npm run test-lint && npm run test-system && npm run test-unit && npm run test-integration && npm run test-browser"
   },
-  "keywords": [
-    "eval",
-    "scope",
-    "postman"
-  ],
-  "author": "Postman Labs <help@getpostman.com> (=)",
-  "license": "Apache-2.0",
   "devDependencies": {
     "async": "2.6.1",
     "browserify": "16.5.0",
@@ -48,21 +54,9 @@
     "parse-gitignore": "1.0.1",
     "puppeteer": "1.19.0",
     "recursive-readdir": "2.2.2",
-    "shelljs": "0.8.3",
-    "watchify": "3.11.1",
-    "yankee": "1.0.8"
+    "shelljs": "0.8.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/postmanlabs/uniscope.git"
-  },
-  "bugs": {
-    "url": "https://github.com/postmanlabs/uniscope/issues"
-  },
-  "homepage": "https://github.com/postmanlabs/uniscope#readme",
-  "greenkeeper": {
-    "ignore": [
-      "eslint-plugin-jsdoc"
-    ]
+  "engines": {
+    "node": ">=10"
   }
 }
