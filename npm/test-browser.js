@@ -1,8 +1,8 @@
 #!/usr/bin/env node
+/* eslint-env node, es6 */
 // ---------------------------------------------------------------------------------------------------------------------
 // This script is intended to execute all unit tests in the Chrome Browser.
 // ---------------------------------------------------------------------------------------------------------------------
-/* eslint-env node, es6 */
 
 require('shelljs/global');
 
