@@ -1,7 +1,6 @@
 var Scope = require('../../');
 
 describe('scope module options', function () {
-
     it('should allow script execution in strict mode', function (done) {
         var scope = Scope.create({ strict: true });
 
@@ -12,17 +11,20 @@ describe('scope module options', function () {
     });
 
     it('should not forward console if the option is not set', function (done) {
-        var scope = Scope.create({}, { expect: expect }); // no options specified
+        var scope = Scope.create({}, { expect }); // no options specified
+
         scope.exec(`expect(console).to.be.undefined;`, done); // eslint-disable-line quotes
     });
 
     it('should not forward console if the option is set to false', function (done) {
-        var scope = Scope.create({ console: false }, { expect: expect }); // specified as false
+        var scope = Scope.create({ console: false }, { expect }); // specified as false
+
         scope.exec(`expect(console).to.be.undefined;`, done); // eslint-disable-line quotes
     });
 
     it('should forward native console when configured', function (done) {
-        var scope = Scope.create({ console: true }, { expect: expect });
+        var scope = Scope.create({ console: true }, { expect });
+
         scope.exec(`expect(console).to.be.an('object');`, done); // eslint-disable-line quotes
     });
 

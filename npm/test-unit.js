@@ -13,13 +13,17 @@ const path = require('path'),
 
 module.exports = function (exit) {
     // banner line
-    console.log(chalk.yellow.bold('Running unit tests using mocha on node...'));
+    console.info(chalk.yellow.bold('Running unit tests using mocha on node...'));
 
     var Mocha = require('mocha');
 
     // add all spec files to mocha
     recursive(SPEC_SOURCE_DIR, function (err, files) {
-        if (err) { console.error(err); return exit(1); }
+        if (err) {
+            console.error(err);
+
+            return exit(1);
+        }
 
         var mocha = new Mocha({ timeout: 1000 * 60 });
 
