@@ -61,4 +61,29 @@ describe('scope module', function () {
             done(err);
         });
     });
+
+    // @fixme https://github.com/postmanlabs/uniscope/pull/408
+    it.skip('should handle globals with invalid identifer name', function (done) {
+        global['123'] = true;
+        global['a-b'] = true;
+        scope.exec(`
+            expect(this['123']).to.be.undefined;
+            expect(this['a-b']).to.be.undefined;
+        `, function (err) {
+            delete global['123'];
+            delete global['a-b'];
+            done(err);
+        });
+    });
+
+    it('should handle globals with unicode identifer name', function (done) {
+        global.ಠ_ಠ = true;
+        scope.exec(`
+            expect(this.ಠ_ಠ).to.be.undefined;
+            expect(ಠ_ಠ).to.be.undefined;
+        `, function (err) {
+            delete global.ಠ_ಠ;
+            done(err);
+        });
+    });
 });
