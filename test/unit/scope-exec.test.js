@@ -1,6 +1,12 @@
 const expect = require('chai').expect,
     Scope = require('../../');
 
+// upgrading mocha 6->8 leaked this global variable in browser context
+// since these global property names are set as our anonymous function's arguments,
+// and having an identifier with `-` crashes the .exec so, just delete it!
+// possible fix: https://github.com/postmanlabs/uniscope/pull/408
+delete global['__core-js_shared__'];
+
 describe('scope module exec', function () {
     var scope;
 
