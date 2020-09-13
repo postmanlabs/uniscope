@@ -29,4 +29,14 @@ describe('scope module exec', function () {
             done();
         });
     });
+
+    it('should be able to execute asynchronous script', function (done) {
+        scope.set('setTimeout', global.setTimeout);
+        scope.exec(`
+            setTimeout(__exitscope, 100);
+        `, true, function (err) {
+            scope.unset('setTimeout');
+            done(err);
+        });
+    });
 });

@@ -48,4 +48,17 @@ describe('scope module', function () {
             done(err);
         });
     });
+
+    it('should add all allowed globals even if it\'s missing in the global scope', function (done) {
+        var WeakSet = global.WeakSet;
+
+        delete global.WeakSet;
+
+        scope.exec(`
+            expect(this).to.have.property('WeakSet').that.is.undefined;
+        `, function (err) {
+            global.WeakSet = WeakSet;
+            done(err);
+        });
+    });
 });

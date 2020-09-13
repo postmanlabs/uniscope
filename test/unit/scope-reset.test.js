@@ -53,7 +53,7 @@ describe('scope module reset', function () {
         `, function (err) {
             if (err) { return done(err); }
 
-            scope.reset(true);
+            scope.reset(true, true);
 
             // we do not test globals to exist as this is tested elsewhere
             scope.exec(`
