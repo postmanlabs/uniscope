@@ -20,6 +20,7 @@
     "postman"
   ],
   "scripts": {
+    "build-docs": "node npm/build-docs.js",
     "test": "npm run test-lint && npm run test-system && npm run test-unit && npm run test-integration && npm run test-browser",
     "test-browser": "node npm/test-browser.js",
     "test-integration": "node npm/test-integration.js",
@@ -52,6 +53,7 @@
     "nyc": "^15.1.0",
     "packity": "^0.3.2",
     "parse-gitignore": "^1.0.1",
+    "postman-jsdoc-theme": "^0.0.3",
     "puppeteer": "^5.3.0",
     "recursive-readdir": "^2.2.2",
     "shelljs": "^0.8.4",
