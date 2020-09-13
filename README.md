@@ -19,11 +19,11 @@ Please read this carefully to avoid any ambiguity during adopting this module.
 
 ```javascript
 // sample inside NodeJS
-var Scope = require('scope'), // use browserify or requireJS in browser!
+var Scope = require('uniscope'), // use browserify or requireJS in browser!
 	myscope;
 
 // create a new scope
-myscope = new Scope(globals, { // `globals` will be `window` in browser
+myscope = new Scope({
 	eval: false, // specify whether eval is available inside sandbox
 	console: false, // specify whether native console is available
 	strict: false, // specify whether to run the script in strict mode
@@ -63,16 +63,32 @@ myscope.exec('setTimeout(function () { __exitscope(null); }, 1000)', true, funct
 - `Scope.prototype.set:function(name:string, value)`
 - `Scope.prototype.unset:function(name:string)`
 - `Scope.prototype.import:function(obj:object)`
-- `Scope.prototype.exec:function(code:string, [async:boolean,] callnack:function)`
+- `Scope.prototype.exec:function(code:string, [async:boolean,] callback:function)`
 - `Scope.prototype.reset:function(locals:boolean, context:boolean)`
 
 ## List of allowed Globals
 
 These are the list of globals available to scripts in the scope
 
-'Array', 'ArrayBuffer', 'Buffer', 'Boolean', 'DataView', 'Date', 'decodeURI', 'decodeURIComponent', 'encodeURI',
-'encodeURIComponent', 'Error', 'escape', 'EvalError', 'Float32Array', 'Float64Array', 'Function', 'Infinity',
-'Int8Array', 'Int16Array', 'Int32Array', 'isFinite', 'isNaN', 'JSON', 'Map', 'Math', 'NaN', 'Number', 'Object',
-'parseFloat', 'parseInt', 'Proxy', 'Promise', 'RangeError', 'ReferenceError', 'Reflect', 'RegExp', 'Set',
-'String', 'Symbol', 'SyntaxError', 'TypeError', 'Uint8Array', 'Uint8ClampedArray', 'Uint16Array', 'Uint32Array',
-'undefined', 'unescape', 'URIError', 'WeakMap', 'WeakSet'
+```json
+[
+    "Array",          "ArrayBuffer",        "Atomics",
+    "BigInt",         "BigInt64Array",      "BigUint64Array",
+    "Boolean",        "DataView",           "Date",
+    "Error",          "EvalError",          "Float32Array",
+    "Float64Array",   "Function",           "Infinity",
+    "Int16Array",     "Int32Array",         "Int8Array",
+    "JSON",           "Map",                "Math",
+    "NaN",            "Number",             "Object",
+    "Promise",        "Proxy",              "RangeError",
+    "ReferenceError", "Reflect",            "RegExp",
+    "Set",            "SharedArrayBuffer",  "String",
+    "Symbol",         "SyntaxError",        "TypeError",
+    "URIError",       "Uint16Array",        "Uint32Array",
+    "Uint8Array",     "Uint8ClampedArray",  "WeakMap",
+    "WeakSet",        "decodeURI",          "decodeURIComponent",
+    "encodeURI",      "encodeURIComponent", "escape",
+    "isFinite",       "isNaN",              "parseFloat",
+    "parseInt",       "undefined",          "unescape"
+]
+```

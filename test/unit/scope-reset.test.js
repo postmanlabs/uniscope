@@ -1,14 +1,18 @@
-var Scope = require('../../');
+const expect = require('chai').expect,
+    Scope = require('../../');
 
 describe('scope module reset', function () {
     var scope;
 
     beforeEach(function () {
+        global.expect = expect;
+
         scope = Scope.create({
             ignore: ['expect']
         });
     });
     afterEach(function () {
+        delete global.expect;
         scope = null;
     });
 
@@ -49,7 +53,7 @@ describe('scope module reset', function () {
         `, function (err) {
             if (err) { return done(err); }
 
-            scope.reset(true);
+            scope.reset(true, true);
 
             // we do not test globals to exist as this is tested elsewhere
             scope.exec(`
