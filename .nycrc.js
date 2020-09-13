@@ -23,7 +23,7 @@ module.exports = {
     'check-coverage': true,
     'report-dir': '.coverage',
     'temp-dir': '.nyc_output',
-    include: ['lib/**/*.js', 'bin/**/*.js'],
+    include: ['lib/**/*.js'],
     reporter: ['lcov', 'json', 'text', 'text-summary'],
     ...configOverrides(TEST_TYPE),
 };
