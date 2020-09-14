@@ -5,17 +5,32 @@ os:
   - windows
 
 node_js:
-  - '10'
-  - '12'
+  - 10
+  - 12
 
 jobs:
   include:
     - name: 'Coverage'
-      node_js: stable
       os: linux
+      node_js: stable
       script:
         - npm run test-unit
         - bash <(curl -s https://codecov.io/bash) -c -Z -f .coverage/coverage-final.json -F unit
+
+    - stage: Publish Docs
+      if: branch = master
+      script: npm run build-docs
+      deploy:
+        edge: true # opt in to dpl v2
+        provider: pages:git
+        local_dir: out/docs
+        keep_history: false
+        deploy_key: .github/travis-deploy-key
+        commit_message: Deploy to %{target_branch}
+        on:
+          branch: master
+
+before_deploy: openssl aes-256-cbc -K $encrypted_05f822b6caa8_key -iv $encrypted_05f822b6caa8_iv -in .github/travis-deploy-key.enc -out .github/travis-deploy-key -d
 
 notifications:
   slack:
