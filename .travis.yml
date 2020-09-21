@@ -20,7 +20,7 @@ jobs:
 
     # create a new release if $CREATE_RELEASE is set
     - stage: Create Release
-      if: env(CREATE_RELEASE) = true AND type = push AND tag IS blank
+      if: env(CREATE_RELEASE) = true AND type = api AND tag IS blank
       os: osx
       node_js: 12
       git:
