@@ -1,6 +1,28 @@
 master:
+  new features:
+    - >-
+      GH-394 Updated allowed globals list and added: Atomics, BigInt,
+      BigInt64Array, BigUint64Array, and SharedArrayBuffer
+    - GH-394 Added support for `self` context object
+  fixed bugs:
+    - >-
+      GH-394 Fixed a bug where global context was incorrectly created using
+      allowed globals when both `window` and `global` is not present
+  breaking changes:
+    - GH-409 Dropped support for Node < v10
+    - GH-412 Convert Uniscope function to ES6 class
+    - GH-394 Removed Buffer from allowed globals list
   chores:
-    - Added `codecov` for code coverage
+    - GH-415 Automated releases and publish process
+    - GH-413 Automated gh-pages docs deployment
+    - >-
+      GH-409 Updated .npmignore to prevent the addition of tests and config
+      files in the published package
+    - GH-409 Added unit tests for 100% code coverage
+    - GH-323 Added `codecov` for code coverage
+    - GH-409 Updated nyc configuration
+    - GH-409 Updated ESLint rules
+    - GH-409 Updated dependencies
 
 1.1.3:
   date: 2019-08-01
