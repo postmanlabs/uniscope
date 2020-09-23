@@ -12,6 +12,10 @@ var chalk = require('chalk'),
     KARMA_CONFIG_PATH = path.join(__dirname, '..', 'test', 'karma.conf');
 
 module.exports = function (exit) {
+    if (process.env.TRAVIS_OS_NAME === 'windows') { // eslint-disable-line no-process-env
+        return console.info(chalk.yellow.bold('Skipping browser tests on windows...'));
+    }
+
     console.info(chalk.yellow.bold('Running unit tests within browser...'));
 
     var KarmaServer = require('karma').Server;
