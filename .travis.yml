@@ -47,6 +47,8 @@ jobs:
       if: tag IS present
       os: osx
       node_js: 12
+      git:
+        depth: false # disable --depth
       script:
         # fail-fast using set -e
         - set -e
