@@ -8,7 +8,6 @@ var _ = require('lodash'),
     fs = require('fs');
 
 describe('project repository', function () {
-
     describe('package.json', function () {
         var content,
             json;
@@ -37,27 +36,8 @@ describe('project repository', function () {
 
             it('should have a valid version string in form of <major>.<minor>.<revision>', function () {
                 expect(json.version)
-                    // eslint-disable-next-line max-len
+                    // eslint-disable-next-line max-len, security/detect-unsafe-regex
                     .to.match(/^((\d+)\.(\d+)\.(\d+))(?:-([\dA-Za-z-]+(?:\.[\dA-Za-z-]+)*))?(?:\+([\dA-Za-z-]+(?:\.[\dA-Za-z-]+)*))?$/);
-            });
-        });
-
-        describe('script definitions', function () {
-            it('should have valid, existing files', function () {
-                var scriptRegex = /^node\snpm\/.+\.js$/;
-
-                expect(json.scripts).to.be.ok;
-                json.scripts && Object.keys(json.scripts).forEach(function (scriptName) {
-                    expect(json.scripts[scriptName]).to.match(scriptRegex);
-                    expect(fs.statSync('npm/' + scriptName + '.js')).to.be.ok;
-                });
-            });
-
-            it('should have the hashbang defined', function () {
-                json.scripts && Object.keys(json.scripts).forEach(function (scriptName) {
-                    var fileContent = fs.readFileSync('npm/' + scriptName + '.js').toString();
-                    expect(fileContent).to.match(/^#!\/(bin\/bash|usr\/bin\/env\snode)[\r\n][\W\w]*$/g);
-                });
             });
         });
 
@@ -68,6 +48,7 @@ describe('project repository', function () {
 
             it('should point to a valid semver', function () {
                 Object.keys(json.devDependencies).forEach(function (dependencyName) {
+                    // eslint-disable-next-line security/detect-non-literal-regexp
                     expect(json.devDependencies[dependencyName]).to.match(new RegExp('((\\d+)\\.(\\d+)\\.(\\d+))(?:-' +
                         '([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?$'));
                 });

@@ -6,6 +6,7 @@ var editorconfig = require('editorconfig'),
 
     /**
      * The width (in spaces) of tabs used for indentation throughout the project
+     *
      * @type {Number}
      */
     TAB_WIDTH = 4;
@@ -27,6 +28,10 @@ describe('.editorconfig', function () {
 
     it('should have an indent_style of 4', function () {
         expect(config.indent_style).to.equal('space');
+    });
+
+    it('should have a max_length of 120', function () {
+        expect(config.max_length).to.equal(120);
     });
 
     it('should have a truthy insert_final_newline value', function () {

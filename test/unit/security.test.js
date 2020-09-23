@@ -1,7 +1,7 @@
-var Scope = require('../../');
+const expect = require('chai').expect,
+    Scope = require('../../');
 
 describe('scope module security', function () {
-
     describe('sensitive globals', function () {
         var scope;
 

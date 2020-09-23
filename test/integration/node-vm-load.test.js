@@ -1,3 +1,5 @@
+const expect = require('chai').expect;
+
 describe('vm module', function () {
     var vm = require('vm'),
         browserify = require('browserify'),
@@ -63,6 +65,8 @@ describe('vm module', function () {
             scope.set('expect', expect);
 
             scope.exec([
+                // access 'ArrayOutsideVM' from the parent scope
+                'var ArrayOutsideVM = Function("return this")().ArrayOutsideVM;',
                 'expect(Array).to.be.ok',
                 'expect(ArrayOutsideVM).to.be.ok',
                 'expect(Array).to.not.equal(ArrayOutsideVM)'
