@@ -1,4 +1,4 @@
-# Uniscope [![Build Status](https://travis-ci.org/postmanlabs/uniscope.svg?branch=develop)](https://travis-ci.org/postmanlabs/uniscope) [![codecov](https://codecov.io/gh/postmanlabs/uniscope/branch/develop/graph/badge.svg)](https://codecov.io/gh/postmanlabs/uniscope)
+# Uniscope [![Build Status](https://travis-ci.com/postmanlabs/uniscope.svg?branch=develop)](https://travis-ci.com/postmanlabs/uniscope) [![codecov](https://codecov.io/gh/postmanlabs/uniscope/branch/develop/graph/badge.svg)](https://codecov.io/gh/postmanlabs/uniscope)
 
 The goal of this module is to provide a uniform execution environment to a JavaScript code between browser and NodeJS.<br/>
 For example, global functions and objects in NodeJS such as `setImmediate` and `global` are not easily available to the script. And on the other hand, browser-specific global properties such as `requestAnimationFrame` and `window` is not available as well.
