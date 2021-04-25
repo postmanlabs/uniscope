@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home - Postman Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home 2.0.1</a></h2><h3>Classes</h3><ul><li><a href="Uniscope.html">Uniscope</a><ul class='methods'><li data-type='method'><a href="Uniscope.html#.create">create</a></li><li data-type='method'><a href="Uniscope.html#exec">exec</a></li><li data-type='method'><a href="Uniscope.html#import">import</a></li><li data-type='method'><a href="Uniscope.html#reset">reset</a></li><li data-type='method'><a href="Uniscope.html#set">set</a></li><li data-type='method'><a href="Uniscope.html#unset">unset</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>Uniscope <a href="https://travis-ci.com/postmanlabs/uniscope"><img src="https://travis-ci.com/postmanlabs/uniscope.svg?branch=develop" alt="Build Status"></a> <a href="https://codecov.io/gh/postmanlabs/uniscope"><img src="https://codecov.io/gh/postmanlabs/uniscope/branch/develop/graph/badge.svg" alt="codecov"></a></h1>
+<p>The goal of this module is to provide a uniform execution environment to a JavaScript code between browser and NodeJS.<br/>
+For example, global functions and objects in NodeJS such as <code>setImmediate</code> and <code>global</code> are not easily available to the script. And on the other hand, browser-specific global properties such as <code>requestAnimationFrame</code> and <code>window</code> is not available as well.</p>
+<h2>Installation</h2>
+<p>Uniscope can be installed using NPM or directly from the git repository within your NodeJS projects. If installing from NPM, the following command installs the module and saves in your <code>package.json</code></p>
+<pre class="prettyprint source lang-console"><code>$ npm install uniscope --save
+</code></pre>
+<h2>What this module does NOT do</h2>
+<p>Please read this carefully to avoid any ambiguity during adopting this module.</p>
+<ul>
+<li>This is not a module that converts NodeJS codes to browser or vice versa; that is the work of transformation tools such as browserify.</li>
+<li>This tool is not a security sandbox since it is easy to break out from this scope. This module simply provides uniformity to the scripts.</li>
+</ul>
+<h2>Usage</h2>
+<pre class="prettyprint source lang-javascript"><code>// sample inside NodeJS
+let Scope = require('uniscope'), // use browserify or requireJS in browser!
+    myscope;
+
+// create a new scope
+myscope = new Scope({
+    eval: false, // specify whether eval is available inside sandbox
+    console: false, // specify whether native console is available
+    strict: false, // specify whether to run the script in strict mode
+    ignore: ['require'], // specify a list of global variables to ignore and pass-through to the script
+    block: ['process'] // specify a list of variables that should be blocked from being accessed
+}, { // provide an object with globals to be made available to the scripts
+    myGlobalVarName: &quot;sample&quot;
+});
+
+// set a specific variable as global
+myscope.set('logger', function (msg) {
+    console.log(msg);
+});
+
+// now run a script
+myscope.exec('logger(myGlobalVarName)', function (err) {
+    err ? console.error(err.stack || err) : console.log('execution complete');
+});
+</code></pre>
+<h3>Running an asynchronous script</h3>
+<p>An asynchronous script will require an explicit call of a global function <code>__exitscope</code>. Note that <code>setTimeout</code> and <code>setInterval</code> are not injected by default. You can easily do it yourself.</p>
+<pre class="prettyprint source lang-javascript"><code>myscope.set('setTimeout', global.setTimeout); // inject setTimeout
+
+// note the 2nd parameter is set to `true` for async
+myscope.exec('setTimeout(function () { __exitscope(null); }, 1000)', true, function (err) {
+    err ? console.error(err.stack || err) : console.log('execution complete');
+});
+</code></pre>
+<h2>List of allowed Globals</h2>
+<p>These are the list of globals available to scripts in the scope</p>
+<pre class="prettyprint source lang-json"><code>[
+    &quot;Array&quot;,          &quot;ArrayBuffer&quot;,        &quot;Atomics&quot;,
+    &quot;BigInt&quot;,         &quot;BigInt64Array&quot;,      &quot;BigUint64Array&quot;,
+    &quot;Boolean&quot;,        &quot;DataView&quot;,           &quot;Date&quot;,
+    &quot;Error&quot;,          &quot;EvalError&quot;,          &quot;Float32Array&quot;,
+    &quot;Float64Array&quot;,   &quot;Function&quot;,           &quot;Infinity&quot;,
+    &quot;Int16Array&quot;,     &quot;Int32Array&quot;,         &quot;Int8Array&quot;,
+    &quot;JSON&quot;,           &quot;Map&quot;,                &quot;Math&quot;,
+    &quot;NaN&quot;,            &quot;Number&quot;,             &quot;Object&quot;,
+    &quot;Promise&quot;,        &quot;Proxy&quot;,              &quot;RangeError&quot;,
+    &quot;ReferenceError&quot;, &quot;Reflect&quot;,            &quot;RegExp&quot;,
+    &quot;Set&quot;,            &quot;SharedArrayBuffer&quot;,  &quot;String&quot;,
+    &quot;Symbol&quot;,         &quot;SyntaxError&quot;,        &quot;TypeError&quot;,
+    &quot;URIError&quot;,       &quot;Uint16Array&quot;,        &quot;Uint32Array&quot;,
+    &quot;Uint8Array&quot;,     &quot;Uint8ClampedArray&quot;,  &quot;WeakMap&quot;,
+    &quot;WeakSet&quot;,        &quot;decodeURI&quot;,          &quot;decodeURIComponent&quot;,
+    &quot;encodeURI&quot;,      &quot;encodeURIComponent&quot;, &quot;escape&quot;,
+    &quot;isFinite&quot;,       &quot;isNaN&quot;,              &quot;parseFloat&quot;,
+    &quot;parseInt&quot;,       &quot;undefined&quot;,          &quot;unescape&quot;
+]
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated at Sun Apr 25 2021 12:35:43 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
