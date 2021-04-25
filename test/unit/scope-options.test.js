@@ -42,12 +42,6 @@ describe('scope module options', function () {
         scope.exec(`expect(console).to.be.undefined;`, done);
     });
 
-    it('should forward native console when configured', function (done) {
-        var scope = Scope.create({ console: true }, { expect });
-
-        scope.exec(`expect(console).to.be.an('object');`, done);
-    });
-
     it('should ensure that the console forwarded is native one', function (done) {
         var scope = Scope.create({
             console: true
@@ -56,10 +50,7 @@ describe('scope module options', function () {
             refConsole: console
         });
 
-        scope.exec(`
-            expect(console).to.be.an('object');
-            expect(console).to.equal(refConsole);
-        `, done);
+        scope.exec(`expect(console).to.equal(refConsole);`, done);
     });
 
     it('should ensure that blocked variables are not allowed', function (done) {

@@ -63,6 +63,7 @@ describe('scope module', function () {
     });
 
     // @fixme https://github.com/postmanlabs/uniscope/pull/408
+    // eslint-disable-next-line mocha/no-skipped-tests
     it.skip('should handle globals with invalid identifer name', function (done) {
         global['123'] = true;
         global['a-b'] = true;

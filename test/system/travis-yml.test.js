@@ -1,12 +1,13 @@
-var fs = require('fs'),
-    yaml = require('js-yaml');
+const fs = require('fs'),
+    yaml = require('js-yaml'),
+    expect = require('chai').expect;
 
 describe('travis.yml', function () {
     var travisYAML,
         travisYAMLError;
 
     try {
-        travisYAML = yaml.safeLoad(fs.readFileSync('.travis.yml').toString());
+        travisYAML = yaml.load(fs.readFileSync('.travis.yml').toString());
     }
     catch (e) {
         travisYAMLError = e;

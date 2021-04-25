@@ -1,15 +1,13 @@
 #!/usr/bin/env node
 // ---------------------------------------------------------------------------------------------------------------------
-// This script is intended to generate documentation for this module
+// This script is intended to generate documentation for this module.
 // ---------------------------------------------------------------------------------------------------------------------
-
-/* eslint-env node, es6 */
-/* eslint-disable no-undef */
-require('shelljs/global');
 
 const path = require('path'),
 
     chalk = require('chalk'),
+    // eslint-disable-next-line security/detect-child-process
+    { execSync: exec } = require('child_process'),
     pkg = require('../package.json'),
 
     IS_WINDOWS = (/^win/).test(process.platform),
@@ -20,7 +18,7 @@ module.exports = function (exit) {
 
     try {
         // clean directory
-        test('-d', TARGET_DIR) && rm('-rf', TARGET_DIR);
+        exec('rm -rf', TARGET_DIR);
     }
     catch (e) {
         console.error(e.stack || e);

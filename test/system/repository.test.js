@@ -2,9 +2,9 @@
  * @fileOverview This test specs runs tests on the package.json file of repository. It has a set of strict tests on the
  * content of the file as well. Any change to package.json must be accompanied by valid test case in this spec-sheet.
  */
-var _ = require('lodash'),
-    yml = require('js-yaml'),
+const yml = require('js-yaml'),
     parseIgnore = require('parse-gitignore'),
+    expect = require('chai').expect,
     fs = require('fs');
 
 describe('project repository', function () {
@@ -99,7 +99,7 @@ describe('project repository', function () {
         });
 
         it('should have readable content', function () {
-            expect(yml.safeLoad(fs.readFileSync('./CHANGELOG.yaml')), 'not a valid yaml').to.be.ok;
+            expect(yml.load(fs.readFileSync('./CHANGELOG.yaml')), 'not a valid yaml').to.be.ok;
         });
     });
 
@@ -130,7 +130,10 @@ describe('project repository', function () {
         });
 
         it('should have .gitignore coverage to be a subset of .npmignore coverage', function () {
-            expect(_.intersection(gitignore, npmignore)).to.eql(gitignore);
+            // eslint-disable-next-line arrow-body-style, arrow-parens
+            const intersection = [gitignore, npmignore].reduce((a, b) => a.filter(c => b.includes(c)));
+
+            expect(intersection).to.eql(gitignore);
         });
     });
 });

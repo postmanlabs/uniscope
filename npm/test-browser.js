@@ -1,20 +1,21 @@
 #!/usr/bin/env node
-/* eslint-env node, es6 */
 // ---------------------------------------------------------------------------------------------------------------------
 // This script is intended to execute all unit tests in the Chrome Browser.
 // ---------------------------------------------------------------------------------------------------------------------
 
-require('shelljs/global');
+const path = require('path'),
 
-var chalk = require('chalk'),
-    path = require('path'),
+    chalk = require('chalk'),
+    KarmaServer = require('karma').Server,
 
     KARMA_CONFIG_PATH = path.join(__dirname, '..', 'test', 'karma.conf');
 
 module.exports = function (exit) {
-    console.info(chalk.yellow.bold('Running unit tests within browser...'));
+    if (process.env.TRAVIS_OS_NAME === 'windows') { // eslint-disable-line no-process-env
+        return console.info(chalk.yellow.bold('Skipping browser tests on windows...'));
+    }
 
-    var KarmaServer = require('karma').Server;
+    console.info(chalk.yellow.bold('Running unit tests within browser...'));
 
     (new KarmaServer({ // eslint-disable no-new
         cmd: 'start',

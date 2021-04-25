@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+// ---------------------------------------------------------------------------------------------------------------------
+// This script is intended to automate the versioning and changelog generation process for a release.
+// ---------------------------------------------------------------------------------------------------------------------
+
 
 const shipit = require('@postman/shipit'),
 
@@ -12,6 +16,7 @@ if (preReleaseSuffix && preReleaseSuffix !== 'beta') {
 
 // 🚢 Just Ship It!
 shipit({
+    mainBranch: 'main',
     // don't push to origin unless explicitly set
     pushToOrigin: pushToOrigin === 'true',
     // prerelease suffix, if any
