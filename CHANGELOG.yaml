@@ -1,4 +1,5 @@
-unreleased:
+2.0.1:
+  date: 2021-04-25
   chores:
     - Added secure codecov publish script
     - Updated dependencies
@@ -85,12 +86,12 @@ unreleased:
 0.1.1-beta.1:
   date: 2016-12-1
   fixed bugs:
-    - 'Fixed an issue with jailed:false not being respected'
+    - Fixed an issue with jailed:false not being respected
 
 0.1.0:
   date: 2016-11-30
   new features:
-    - 'Support for `ignored`, `blocked` and `jailed` globals'
+    - Support for `ignored`, `blocked` and `jailed` globals
   fixed bugs:
     - Fix bug where console was blocked even if passed as import
 
@@ -106,7 +107,7 @@ unreleased:
     - Added vm support
   chores:
     - Cleaned up a few jsdoc entries
-    - 'Removed unwanted packages, updated README and added packing system tests'
+    - Removed unwanted packages, updated README and added packing system tests
 
 0.1.0-beta.1:
   date: 2016-11-16
