@@ -115,7 +115,7 @@ describe('scope module exec', function () {
                     expect(e).to.be.an('error');
                     expect(e.message).to.equal('myGlobal is not defined');
                 }
-            `, { blocked: ['myGlobal'] }, function (err) {
+            `, { block: ['myGlobal'] }, function (err) {
                 expect(err, 'error in blockedExecution').to.be.undefined;
             });
         });
