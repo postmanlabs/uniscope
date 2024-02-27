@@ -1,4 +1,6 @@
 unreleased:
+  new features:
+    - GH-639 Allow multiple concurrent executions to be run in the same scope
   chores:
     - Updated dependencies
 
