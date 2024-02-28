@@ -45,4 +45,59 @@ describe('scope module exec', function () {
             done(err);
         });
     });
+
+    it('should be able to execute multiple concurrent executions', function (done) {
+        scope.set('execution_1', function () {
+            scope.exec(`
+                expect(a).to.equal(1);
+                a = 2;
+                b = 2;
+
+                execution_1_1();
+            `, function (err) {
+                expect(err, 'error in execution_1').to.be.undefined;
+            });
+        });
+
+        scope.set('execution_1_1', function () {
+            scope.exec(`
+                expect(a).to.equal(2);
+                expect(b).to.equal(2);
+                a = 3;
+                b = 3;
+                c = 3;
+            `, function (err) {
+                expect(err, 'error in execution_1_1').to.be.undefined;
+            });
+        });
+
+        scope.set('execution_2', function () {
+            scope.exec(`
+                expect(a).to.equal(3);
+                expect(b).to.equal(3);
+                expect(c).to.equal(3);
+                a = 4;
+                b = 4;
+                c = 4;
+                d = 4;
+            `, function (err) {
+                expect(err, 'error in execution_2').to.be.undefined;
+            });
+        });
+
+        scope.exec(`
+            a = 1;
+
+            execution_1();
+            expect(a).to.equal(3);
+            expect(b).to.equal(3);
+            expect(c).to.equal(3);
+
+            execution_2();
+            expect(a).to.equal(4);
+            expect(b).to.equal(4);
+            expect(c).to.equal(4);
+            expect(d).to.equal(4);
+        `, done);
+    });
 });
