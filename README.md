@@ -53,8 +53,8 @@ An asynchronous script will require an explicit call of a global function `__exi
 ```javascript
 myscope.set('setTimeout', global.setTimeout); // inject setTimeout
 
-// note the 2nd parameter is set to `true` for async
-myscope.exec('setTimeout(function () { __exitscope(null); }, 1000)', true, function (err) {
+// note the 2nd parameter is set to `{ async: true }`
+myscope.exec('setTimeout(function () { __exitscope(null); }, 1000)', { async: true }, function (err) {
     err ? console.error(err.stack || err) : console.log('execution complete');
 });
 ```
