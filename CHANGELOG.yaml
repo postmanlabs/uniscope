@@ -1,3 +1,7 @@
+unreleased:
+  new features:
+    - GH-640 Added option to allow blocking globals in specific executions
+
 2.1.0:
   date: 2024-02-28
   new features:
