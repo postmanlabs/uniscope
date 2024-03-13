@@ -1,4 +1,4 @@
-# Uniscope [![Build Status](https://travis-ci.com/postmanlabs/uniscope.svg?branch=develop)](https://travis-ci.com/postmanlabs/uniscope) [![codecov](https://codecov.io/gh/postmanlabs/uniscope/branch/develop/graph/badge.svg)](https://codecov.io/gh/postmanlabs/uniscope)
+# Uniscope [![CI](https://github.com/postmanlabs/uniscope/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/postmanlabs/uniscope/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/postmanlabs/uniscope/branch/develop/graph/badge.svg)](https://codecov.io/gh/postmanlabs/uniscope)
 
 The goal of this module is to provide a uniform execution environment to a JavaScript code between browser and NodeJS.<br/>
 For example, global functions and objects in NodeJS such as `setImmediate` and `global` are not easily available to the script. And on the other hand, browser-specific global properties such as `requestAnimationFrame` and `window` is not available as well.
@@ -53,8 +53,8 @@ An asynchronous script will require an explicit call of a global function `__exi
 ```javascript
 myscope.set('setTimeout', global.setTimeout); // inject setTimeout
 
-// note the 2nd parameter is set to `true` for async
-myscope.exec('setTimeout(function () { __exitscope(null); }, 1000)', true, function (err) {
+// note the 2nd parameter is set to `{ async: true }`
+myscope.exec('setTimeout(function () { __exitscope(null); }, 1000)', { async: true }, function (err) {
     err ? console.error(err.stack || err) : console.log('execution complete');
 });
 ```

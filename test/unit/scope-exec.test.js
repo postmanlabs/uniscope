@@ -100,4 +100,37 @@ describe('scope module exec', function () {
             expect(d).to.equal(4);
         `, done);
     });
+
+    it('should allow blocking globals in specific executions', function (done) {
+        scope.set('myGlobal', 'my_global');
+
+        scope.set('blockedExecution', function () {
+            scope.exec(`
+                expect(myGlobal).to.equal(undefined);
+                unblockedExecution(); // call execution from inside the blocked scope
+                try {
+                    Function('return myGlobal')();
+                    throw new Error('myGlobal is not blocked');
+                } catch (e) {
+                    expect(e).to.be.an('error');
+                    expect(e.message).to.equal('myGlobal is not defined');
+                }
+            `, { block: ['myGlobal'] }, function (err) {
+                expect(err, 'error in blockedExecution').to.be.undefined;
+            });
+        });
+
+        scope.set('unblockedExecution', function () {
+            scope.exec(`
+                expect(myGlobal).to.equal('my_global');
+            `, function (err) {
+                expect(err, 'error in unblockedExecution').to.be.undefined;
+            });
+        });
+
+        scope.exec(`
+            blockedExecution();
+            unblockedExecution();
+        `, done);
+    });
 });
