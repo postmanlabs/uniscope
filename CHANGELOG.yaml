@@ -1,6 +1,8 @@
 unreleased:
   new features:
     - GH-640 Added option to allow blocking globals in specific executions
+  chores:
+    - Updated dependencies
 
 2.1.0:
   date: 2024-02-28
