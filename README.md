@@ -63,25 +63,80 @@ myscope.exec('setTimeout(function () { __exitscope(null); }, 1000)', { async: tr
 
 These are the list of globals available to scripts in the scope
 
+### Standard Built-ins:
+
 ```json
 [
     "Array",          "ArrayBuffer",        "Atomics",
-    "BigInt",         "BigInt64Array",      "BigUint64Array",
-    "Boolean",        "DataView",           "Date",
-    "Error",          "EvalError",          "Float32Array",
-    "Float64Array",   "Function",           "Infinity",
-    "Int16Array",     "Int32Array",         "Int8Array",
+    "BigInt",         "Boolean",            "DataView",
+    "Date",           "Function",           "Infinity",
     "JSON",           "Map",                "Math",
     "NaN",            "Number",             "Object",
-    "Promise",        "Proxy",              "RangeError",
-    "ReferenceError", "Reflect",            "RegExp",
-    "Set",            "SharedArrayBuffer",  "String",
-    "Symbol",         "SyntaxError",        "TypeError",
-    "URIError",       "Uint16Array",        "Uint32Array",
-    "Uint8Array",     "Uint8ClampedArray",  "WeakMap",
+    "Promise",        "Proxy",              "Reflect",
+    "RegExp",         "Set",                "SharedArrayBuffer",
+    "String",         "Symbol",             "WeakMap",
     "WeakSet",        "decodeURI",          "decodeURIComponent",
     "encodeURI",      "encodeURIComponent", "escape",
     "isFinite",       "isNaN",              "parseFloat",
     "parseInt",       "undefined",          "unescape"
+]
+```
+### Errors:
+
+```json
+[
+    "Error",             "EvalError",    "RangeError",
+    "ReferenceError",    "SyntaxError",  "TypeError",
+    "URIError"
+]
+```
+
+### Typed Arrays:
+
+```json
+[
+    "BigInt64Array",   "BigUint64Array",     "Float32Array",
+    "Float64Array",    "Int16Array",         "Int32Array",
+    "Int8Array",       "Uint16Array",        "Uint32Array",
+    "Uint8Array",      "Uint8ClampedArray"
+]
+```
+
+### URL:
+
+```json
+[
+    "URL", "URLSearchParams"
+]
+```
+
+### Encoding:
+```json
+[
+    "atob",           "btoa",
+    "TextDecoder",    "TextDecoderStream",
+    "TextEncoder",    "TextEncoderStream"
+]
+```
+
+### Cryptography:
+```json
+[
+    "Crypto",   "CryptoKey",
+    "crypto",   "SubtleCrypto"
+]
+```
+
+### Stream:
+```json
+[
+    "ByteLengthQueuingStrategy",         "CountQueuingStrategy",
+    "CompressionStream",                 "DecompressionStream",
+    "ReadableByteStreamController",      "ReadableStream",
+    "ReadableStreamBYOBReader",          "ReadableStreamBYOBRequest",
+    "ReadableStreamDefaultController",   "ReadableStreamDefaultReader",
+    "TransformStream",                   "TransformStreamDefaultController",
+    "WritableStream",                    "WritableStreamDefaultController",
+    "WritableStreamDefaultWriter"
 ]
 ```
