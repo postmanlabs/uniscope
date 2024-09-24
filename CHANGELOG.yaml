@@ -1,3 +1,10 @@
+unreleased:
+  breaking changes:
+    - GH-677 Dropped support for Node < v18
+  chores:
+    - GH-677 Updated ESLint rules
+    - GH-677 Updated dependencies
+
 2.2.0:
   date: 2024-03-13
   new features:
