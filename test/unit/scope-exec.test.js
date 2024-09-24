@@ -19,7 +19,7 @@ describe('scope module exec', function () {
     });
 
     it('should be able to execute a simple script', function (done) {
-        scope.exec(`var a = 1 + 2;`, done); // eslint-disable-line quotes
+        scope.exec('var a = 1 + 2;', done); // eslint-disable-line quotes
     });
 
     it('should throw error when callback is missing', function () {

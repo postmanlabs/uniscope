@@ -1,3 +1,14 @@
+unreleased:
+  breaking changes:
+    - GH-677 Dropped support for Node < v18
+  new features:
+    - >-
+      GH-676 Updated allowed globals list to include:
+      URL, Encoding, Cryptographic, and Stream APIs
+  chores:
+    - GH-677 Updated ESLint rules
+    - GH-677 Updated dependencies
+
 2.2.0:
   date: 2024-03-13
   new features:
