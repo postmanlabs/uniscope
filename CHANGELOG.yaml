@@ -5,7 +5,7 @@ unreleased:
     - >-
       GH-676 Updated allowed globals list to include:
       URL, Encoding, Cryptographic, and Stream APIs
-    - GH-682 Updated allowed globals list to include `Blob`
+    - GH-683 Updated allowed globals list to include `Blob`
   chores:
     - GH-677 Updated ESLint rules
     - GH-677 Updated dependencies
