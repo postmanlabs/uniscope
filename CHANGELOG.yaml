@@ -1,10 +1,11 @@
-unreleased:
+3.0.0:
+  date: 2024-09-25
   breaking changes:
     - GH-677 Dropped support for Node < v18
   new features:
     - >-
-      GH-676 Updated allowed globals list to include:
-      URL, Encoding, Cryptographic, and Stream APIs
+      GH-676 Updated allowed globals list to include: URL, Encoding,
+      Cryptographic, and Stream APIs
     - GH-683 Updated allowed globals list to include `Blob`
   chores:
     - GH-677 Updated ESLint rules
