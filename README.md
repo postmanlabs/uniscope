@@ -119,6 +119,13 @@ These are the list of globals available to scripts in the scope
 ]
 ```
 
+### File:
+```json
+[
+    "Blob"
+]
+```
+
 ### Cryptography:
 ```json
 [
