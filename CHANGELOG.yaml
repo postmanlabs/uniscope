@@ -1,3 +1,9 @@
+unreleased:
+  new features:
+    - >-
+      GH-717 Updated allowed globals list to include AbortController, AbortSignal, AggregateError,
+      DOMException, Event, EventTarget, Intl, structuredClone and queueMicrotask
+
 3.0.0:
   date: 2024-09-25
   breaking changes:

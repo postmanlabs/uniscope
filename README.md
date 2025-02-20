@@ -67,27 +67,28 @@ These are the list of globals available to scripts in the scope
 
 ```json
 [
-    "Array",          "ArrayBuffer",        "Atomics",
-    "BigInt",         "Boolean",            "DataView",
-    "Date",           "Function",           "Infinity",
-    "JSON",           "Map",                "Math",
-    "NaN",            "Number",             "Object",
-    "Promise",        "Proxy",              "Reflect",
-    "RegExp",         "Set",                "SharedArrayBuffer",
-    "String",         "Symbol",             "WeakMap",
-    "WeakSet",        "decodeURI",          "decodeURIComponent",
-    "encodeURI",      "encodeURIComponent", "escape",
-    "isFinite",       "isNaN",              "parseFloat",
-    "parseInt",       "undefined",          "unescape"
+    "Array",               "ArrayBuffer",        "Atomics",
+    "BigInt",              "Boolean",            "DataView",
+    "Date",                "Function",           "Infinity",
+    "Intl"                 "JSON",               "Map",
+    "Math",                "NaN",                "Number",
+    "Object",              "Promise",            "Proxy",
+    "Reflect",             "RegExp",             "Set",
+    "SharedArrayBuffer",   "String",             "Symbol",
+    "WeakMap",             "WeakSet",            "decodeURI",
+    "decodeURIComponent",  "encodeURI",          "encodeURIComponent",
+    "escape",              "isFinite",           "isNaN",
+    "queueMicrotask",      "parseFloat",         "parseInt",
+    "structuredClone",     "undefined",          "unescape"
 ]
 ```
 ### Errors:
 
 ```json
 [
-    "Error",             "EvalError",    "RangeError",
-    "ReferenceError",    "SyntaxError",  "TypeError",
-    "URIError"
+    "AggregateError"     "Error",           "EvalError",
+    "RangeError",        "ReferenceError",  "SyntaxError",
+    "TypeError",         "URIError"
 ]
 ```
 
@@ -147,3 +148,16 @@ These are the list of globals available to scripts in the scope
     "WritableStreamDefaultWriter"
 ]
 ```
+
+### Events
+```json
+[
+    "DOMException",    "Event",    "EventTarget"
+]
+```
+
+### Fetch
+```json
+[
+    "AbortController",    "AbortSignal"
+]
