@@ -1,6 +1,6 @@
 {
   "name": "uniscope",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Allows one to evaluate a code within a controlled environment",
   "author": "Postman Inc.",
   "license": "Apache-2.0",
