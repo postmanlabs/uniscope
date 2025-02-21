@@ -15,20 +15,23 @@ describe('scope module globals', function () {
     it('should be limited to a known subset in context', function (done) {
         scope.exec(`
             var availableGlobals = Object.getOwnPropertyNames(this).sort();
-            expect(availableGlobals).eql(['Array', 'ArrayBuffer', 'Atomics', 'atob', 'BigInt', 'BigInt64Array',
+            expect(availableGlobals).eql(['AbortController', 'AbortSignal', 'AggregateError', 'Array',
+                'ArrayBuffer', 'Atomics', 'atob', 'BigInt', 'BigInt64Array',
                 'BigUint64Array', 'Blob', 'Boolean', 'ByteLengthQueuingStrategy', 'CompressionStream',
-                'CountQueuingStrategy', 'btoa', 'Crypto', 'CryptoKey', 'crypto', 'DataView', 'Date',
+                'CountQueuingStrategy', 'btoa', 'Crypto', 'CryptoKey', 'DOMException', 'crypto', 'DataView', 'Date',
                 'DecompressionStream', 'decodeURI', 'decodeURIComponent', 'encodeURI', 'encodeURIComponent',
-                'Error', 'escape', 'EvalError', 'Float32Array', 'Float64Array', 'Function', 'Infinity', 'Int8Array',
-                'Int16Array', 'Int32Array', 'isFinite', 'isNaN', 'JSON','Map', 'Math', 'NaN', 'Number', 'Object',
-                'parseFloat', 'parseInt', 'Proxy', 'Promise', 'RangeError', 'ReadableByteStreamController',
-                'ReadableStream', 'ReadableStreamBYOBReader', 'ReadableStreamBYOBRequest',
-                'ReadableStreamDefaultController', 'ReadableStreamDefaultReader', 'ReferenceError', 'Reflect', 'RegExp',
-                'Set', 'SharedArrayBuffer', 'String', 'SubtleCrypto', 'Symbol', 'SyntaxError', 'TextDecoder',
-                'TextDecoderStream', 'TextEncoder', 'TextEncoderStream', 'TransformStream',
-                'TransformStreamDefaultController', 'TypeError', 'Uint8Array', 'Uint8ClampedArray', 'Uint16Array',
-                'Uint32Array', 'undefined', 'unescape', 'URIError', 'URL', 'URLSearchParams', 'WeakMap', 'WeakSet',
-                'WritableStream', 'WritableStreamDefaultController', 'WritableStreamDefaultWriter',
+                'Error', 'escape', 'EvalError', 'Event', 'EventTarget', 'Float32Array',
+                'Float64Array', 'Function', 'Infinity', 'Int8Array', 'Int16Array', 'Int32Array', 'isFinite',
+                'isNaN', 'Intl', 'JSON','Map', 'Math', 'NaN', 'Number', 'Object',
+                'parseFloat', 'parseInt', 'queueMicrotask',  'structuredClone', 'Proxy', 'Promise', 'RangeError',
+                'ReadableByteStreamController', 'ReadableStream', 'ReadableStreamBYOBReader',
+                'ReadableStreamBYOBRequest', 'ReadableStreamDefaultController', 'ReadableStreamDefaultReader',
+                'ReferenceError', 'Reflect', 'RegExp', 'Set', 'SharedArrayBuffer', 'String', 'SubtleCrypto', 'Symbol',
+                'SyntaxError', 'TextDecoder', 'TextDecoderStream', 'TextEncoder', 'TextEncoderStream',
+                'TransformStream', 'TransformStreamDefaultController', 'TypeError', 'Uint8Array', 'Uint8ClampedArray',
+                'Uint16Array', 'Uint32Array', 'undefined', 'unescape', 'URIError', 'URL', 'URLSearchParams', 'WeakMap',
+                'WeakSet', 'WritableStream', 'WritableStreamDefaultController',
+                'WritableStreamDefaultWriter',
                 'expect' // special for test
             ].sort())
         `, done);
